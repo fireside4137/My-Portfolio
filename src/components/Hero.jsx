@@ -1,88 +1,95 @@
 import React from 'react';
-import { ArrowRight, Download, Github, Linkedin, Mail, Sparkles, Database, BarChart3, ShieldCheck, Cpu } from 'lucide-react';
+import { ArrowRight, Download, Github, Linkedin, Mail, MapPin, Award } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
 export default function Hero() {
   return (
-    <section className="relative pt-32 pb-20 overflow-hidden border-b border-slate-800/50">
-      {/* Glow background blobs */}
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute top-40 right-10 w-[400px] h-[250px] bg-emerald-500/10 blur-[100px] rounded-full pointer-events-none" />
+    <section className="pt-32 pb-16 border-b border-slate-800/60">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10">
+          
+          {/* Left Content */}
+          <div className="flex-1 space-y-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono border border-cyan-500/20">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              {personalInfo.status}
+            </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-4xl">
-          {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/80 text-cyan-300 text-xs font-mono mb-6 shadow-sm backdrop-blur-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span>{personalInfo.status}</span>
-          </div>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-100 tracking-tight">
+              {personalInfo.name}
+            </h1>
 
-          {/* Main Title */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-slate-100 tracking-tight leading-[1.1]">
-            Transforming Data & Code into{' '}
-            <span className="bg-gradient-to-r from-cyan-400 via-emerald-400 to-purple-400 bg-clip-text text-transparent">
-              Scalable Intelligence.
-            </span>
-          </h1>
+            <p className="text-xl font-medium text-cyan-400">
+              {personalInfo.title}
+            </p>
 
-          {/* Bio */}
-          <p className="mt-6 text-lg sm:text-xl text-slate-300 font-normal leading-relaxed max-w-3xl">
-            {personalInfo.bio}
-          </p>
+            <p className="text-slate-300 text-base leading-relaxed max-w-2xl">
+              Computer Science graduate (B.Tech, CGPA 7.9, GATE 2026 Qualified). I build statistical data pipelines, computer vision & voice AI models, and scalable backend cloud applications.
+            </p>
 
-          {/* Action CTAs */}
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <a
-              href="#projects"
-              className="px-6 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-sm flex items-center gap-2 transition-all shadow-lg shadow-cyan-500/25 group"
-            >
-              Explore Projects <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
-              href="#contact"
-              className="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700/80 text-slate-200 border border-slate-700 font-semibold text-sm flex items-center gap-2 transition-colors"
-            >
-              <Mail size={16} /> Contact Me
-            </a>
-            <a
-              href={personalInfo.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-colors"
-              title="GitHub"
-            >
-              <Github size={20} />
-            </a>
-            <a
-              href={personalInfo.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-colors"
-              title="LinkedIn"
-            >
-              <Linkedin size={20} />
-            </a>
-          </div>
+            {/* Quick Badges */}
+            <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-slate-400 pt-1">
+              <span className="flex items-center gap-1 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
+                <MapPin size={13} className="text-cyan-400" /> Uttarakhand, India
+              </span>
+              <span className="flex items-center gap-1 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
+                <Award size={13} className="text-purple-400" /> GATE 2026 CS (Score: 367)
+              </span>
+            </div>
 
-          {/* Key Metrics Stats Grid */}
-          <div className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {personalInfo.stats.map((stat, idx) => (
-              <div
-                key={idx}
-                className="p-4 rounded-xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-sm hover:border-slate-700 transition-colors"
+            {/* Primary Action Buttons */}
+            <div className="pt-3 flex flex-wrap items-center gap-4">
+              <a
+                href="#projects"
+                className="px-6 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm flex items-center gap-2 transition-all shadow-md shadow-cyan-500/20"
               >
-                <div className="text-2xl sm:text-3xl font-extrabold font-mono text-cyan-400">
-                  {stat.value}
-                </div>
-                <div className="mt-1 text-xs text-slate-400 font-medium">
-                  {stat.label}
-                </div>
+                View My Projects <ArrowRight size={16} />
+              </a>
+
+              <a
+                href={personalInfo.resumeUrl}
+                download="Swapnil_Upadhyay_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-sm flex items-center gap-2 border border-slate-700 transition-colors"
+              >
+                <Download size={16} /> Download Resume (PDF)
+              </a>
+
+              <div className="flex items-center gap-2">
+                <a
+                  href={personalInfo.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-colors"
+                  title="GitHub"
+                >
+                  <Github size={18} />
+                </a>
+                <a
+                  href={personalInfo.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-colors"
+                  title="LinkedIn"
+                >
+                  <Linkedin size={18} />
+                </a>
               </div>
-            ))}
+            </div>
           </div>
+
+          {/* Right Image */}
+          <div className="shrink-0">
+            <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden border-2 border-slate-800 shadow-2xl">
+              <img
+                src={personalInfo.profilePicture}
+                alt={personalInfo.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
