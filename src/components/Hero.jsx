@@ -1,8 +1,8 @@
 import React from 'react';
-import { ArrowRight, Download, Github, Linkedin, Mail, MapPin, Award } from 'lucide-react';
+import { ArrowRight, Download, Eye, Github, Linkedin, Mail, MapPin, Award } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
-export default function Hero() {
+export default function Hero({ onOpenResumeModal }) {
   return (
     <section className="pt-32 pb-16 border-b border-slate-800/60">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,22 +38,29 @@ export default function Hero() {
             </div>
 
             {/* Primary Action Buttons */}
-            <div className="pt-3 flex flex-wrap items-center gap-4">
+            <div className="pt-3 flex flex-wrap items-center gap-3">
               <a
                 href="#projects"
-                className="px-6 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm flex items-center gap-2 transition-all shadow-md shadow-cyan-500/20"
+                className="px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-all shadow-md shadow-cyan-500/20"
               >
-                View My Projects <ArrowRight size={16} />
+                View Projects <ArrowRight size={14} />
               </a>
+
+              <button
+                onClick={onOpenResumeModal}
+                className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-xs flex items-center gap-2 border border-slate-700 transition-colors"
+              >
+                <Eye size={14} className="text-cyan-400" /> Preview Resume
+              </button>
 
               <a
                 href={personalInfo.resumeUrl}
                 download="Swapnil_Upadhyay_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-100 font-semibold text-sm flex items-center gap-2 border border-slate-700 transition-colors"
+                className="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium text-xs flex items-center gap-2 border border-slate-800 transition-colors"
               >
-                <Download size={16} /> Download Resume (PDF)
+                <Download size={14} /> Download PDF
               </a>
 
               <div className="flex items-center gap-2">
@@ -61,19 +68,19 @@ export default function Hero() {
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-colors"
+                  className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-colors"
                   title="GitHub"
                 >
-                  <Github size={18} />
+                  <Github size={17} />
                 </a>
                 <a
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-colors"
+                  className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white transition-colors"
                   title="LinkedIn"
                 >
-                  <Linkedin size={18} />
+                  <Linkedin size={17} />
                 </a>
               </div>
             </div>

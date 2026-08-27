@@ -2,7 +2,7 @@ export const personalInfo = {
   name: "Swapnil Upadhyay",
   title: "Aspiring Data Scientist & AI-ML Engineer",
   tagline: "Building predictive models, AI biometrics, and multi-tenant data pipelines.",
-  bio: "Computer Science graduate (B.Tech, CGPA 7.9) proficient in predictive modeling, statistical analysis, and real-time dashboarding. Demonstrated success building end-to-end data applications processing unstructured vision and audio data, statistical OLS regressions, and multi-tenant cloud platforms.",
+  bio: "Computer Science graduate (B.Tech, CGPA 7.9, GATE 2026 Qualified). Proficient in predictive modeling, statistical analysis, and real-time dashboarding. Demonstrated success building end-to-end data applications processing unstructured vision and audio data, statistical OLS regressions, and multi-tenant cloud platforms.",
   location: "Uttarakhand, India",
   phone: "+91 8958688502",
   email: "swapnilupadhyay4137@gmail.com",
@@ -13,19 +13,38 @@ export const personalInfo = {
   status: "Open for Data Science & Software Engineering Roles",
   stats: [
     { label: "GATE 2026 CS Score", value: "367" },
-    { label: "OLS Regression R²", value: "0.5831" },
-    { label: "Districts Modeled", value: "637" },
-    { label: "Biometric Embeddings", value: "256-d" }
+    { label: "12th Board Score", value: "96.6%" },
+    { label: "10th Board Score", value: "96.8%" },
+    { label: "OLS Regression R²", value: "0.5831" }
   ]
 };
 
-export const education = {
-  degree: "Bachelor of Technology in Computer Science and Engineering",
-  institution: "THDC Institute of Hydropower Engineering and Technology (THDC-IHET)",
-  location: "Tehri Garhwal, Uttarakhand",
-  period: "2022 – 2026",
-  cgpa: "7.9 CGPA"
-};
+export const educationList = [
+  {
+    degree: "Bachelor of Technology in Computer Science and Engineering",
+    institution: "THDC Institute of Hydropower Engineering and Technology (THDC-IHET)",
+    location: "Tehri Garhwal, Uttarakhand",
+    period: "2022 – 2026",
+    score: "7.9 CGPA",
+    details: "Focus on Data Science, Machine Learning, Database Architecture, and Distributed Systems."
+  },
+  {
+    degree: "Senior Secondary / Intermediate (12th Grade - PCM)",
+    institution: "DAV Centenary Public School",
+    location: "Haldwani, Uttarakhand",
+    period: "Completed 2021",
+    score: "96.6% (CBSE Board)",
+    details: "Physics, Chemistry, Mathematics & Computer Science specialization."
+  },
+  {
+    degree: "High School (10th Grade)",
+    institution: "Sainik School Ghorakhal",
+    location: "Nainital, Uttarakhand",
+    period: "Completed 2019",
+    score: "96.8% (CBSE Board)",
+    details: "Premier residential military institution focusing on academic excellence, leadership, and discipline."
+  }
+];
 
 export const achievements = [
   {
@@ -37,7 +56,7 @@ export const achievements = [
   {
     title: "Inter-Collegiate Football Tournament Runner-Up",
     subtitle: "University Sports Meet",
-    detail: "Represented the college football team in the University sports meet and secured the runner-up trophy.",
+    detail: "Represented the varsity football team in the University sports meet and secured the runner-up trophy.",
     badge: "Sports Leadership"
   }
 ];
@@ -57,7 +76,7 @@ export const skills = {
     "Supabase Vector DB", "bcrypt Security", "Redis", "Celery", "RESTful APIs"
   ],
   frontendDevOps: [
-    "Streamlit", "React 18", "Tailwind CSS", "Chart.js", 
+    "Streamlit", "React 18", "Tailwind CSS", "Chart.js font-mono", 
     "Docker", "Docker Compose", "Git / GitHub", "CMake", "Segno QR Code"
   ]
 };
@@ -109,7 +128,7 @@ export const projects = [
       { label: "Face Match Cutoff", value: "L2 Norm ≤ 0.6" },
       { label: "Voice Sim Threshold", value: "Cosine ≥ 0.65" }
     ],
-    github: null, // Private repo
+    github: null,
     githubPrivateNote: "Private Repository",
     demo: "https://markit-landing-page.vercel.app",
     details: {
@@ -178,58 +197,3 @@ export const experiences = [
     skills: ["Python 3.12", "FastAPI", "PostgreSQL RLS", "Pandas", "Celery", "Redis", "Docker"]
   }
 ];
-
-export const codeSnippets = {
-  pythonDataScience: `# NFHS-4 OLS Regression Modeling Pipeline
-import statsmodels.api as sm
-import pandas as pd
-from statsmodels.stats.outliers_influence import variance_inflation_factor
-
-class RegressionAnalysis:
-    def fit_ols(self, df: pd.DataFrame, target: str, predictors: list):
-        X = sm.add_constant(df[predictors])
-        y = df[target]
-        model = sm.OLS(y, X).fit()
-        
-        # Calculate VIF for multicollinearity audit
-        vif_data = pd.DataFrame({
-            'predictor': predictors,
-            'VIF': [variance_inflation_factor(X.values, i+1) for i in range(len(predictors))]
-        })
-        
-        return {
-            'r2': model.rsquared,
-            'f_stat': model.fvalue,
-            'p_values': model.pvalues.to_dict(),
-            'vif': vif_data
-        }
-`,
-  sqlRLS: `-- Multi-Tenant PostgreSQL Row-Level Security (RLS) Policy
-ALTER TABLE attendance_logs ENABLE ROW LEVEL SECURITY;
-
-CREATE POLICY tenant_isolation_policy ON attendance_logs
-    FOR ALL
-    TO authenticated_users
-    USING (tenant_id = current_setting('app.current_tenant_id')::uuid);
-
--- Index optimization for tenant-scoped analytical queries
-CREATE INDEX idx_attendance_tenant_timestamp 
-ON attendance_logs (tenant_id, timestamp DESC);
-`,
-  biometrics: `# dlib Face Embedding & Linear SVM Classification
-import dlib
-import numpy as np
-from sklearn.svm import SVC
-
-class FacePipeline:
-    def __init__(self, predictor_path, encoder_path):
-        self.detector = dlib.get_frontal_face_detector()
-        self.sp = dlib.shape_predictor(predictor_path)
-        self.facerec = dlib.dlib_face_recognition_resnet_model_v1(encoder_path)
-
-    def extract_128d_embedding(self, rgb_image, face_rect):
-        shape = self.sp(rgb_image, face_rect)
-        face_descriptor = self.facerec.compute_face_descriptor(rgb_image, shape)
-        return np.array(face_descriptor)
-`
-};
