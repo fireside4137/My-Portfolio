@@ -83,6 +83,42 @@ export const skills = {
 
 export const projects = [
   {
+    id: "creditwise-loan-prediction",
+    title: "CreditWise — Loan Approval Prediction ML Pipeline",
+    subtitle: "End-to-End ML Classification Pipeline with Feature Engineering & Model Comparison",
+    category: "Machine Learning",
+    featured: true,
+    tags: ["Python", "Scikit-Learn", "Pandas", "NumPy", "Matplotlib", "Seaborn", "JupyterLab", "EDA"],
+    shortDescription: "End-to-end ML pipeline predicting binary loan approval outcomes from 20 applicant features across 1,001 records — with data cleaning, feature engineering, and 3-model comparative evaluation.",
+    metrics: [
+      { label: "Best Precision (Naive Bayes)", value: "80.4%" },
+      { label: "Best Accuracy (Log. Reg.)", value: "87.0%" },
+      { label: "Dataset Size", value: "1,001 Records" },
+      { label: "Models Compared", value: "3 Classifiers" }
+    ],
+    github: "https://github.com/fireside4137/CreditWise",
+    demo: null,
+    heatmapImage: "/creditwise_heatmap.png",
+    details: {
+      problem: "Banks and financial institutions process thousands of loan applications daily. Manually reviewing each one is time-consuming and prone to bias. CreditWise automates the loan approval decision using a rigorous end-to-end ML pipeline trained and evaluated on real-world-style applicant data with 20 features.",
+      keyFindings: [
+        "Naive Bayes achieved the best Precision of 80.4% (primary metric) — minimizing false approvals which carry the highest real-world financial risk.",
+        "Logistic Regression achieved the highest Accuracy of 87.0% (Precision: 77.8%, Recall: 80.3%, F1: 79.0%) — strong, interpretable baseline model.",
+        "KNN (k=5) underperformed on Precision (62.9%) and Accuracy (76.5%) — highlighting its sensitivity to high-dimensional, mixed feature spaces.",
+        "Correlation heatmap analysis revealed Credit_Score and DTI_Ratio as the strongest predictors of loan approval status.",
+        "Feature engineering (DTI_Ratio², Credit_Score², log1p(Applicant_Income)) reduced skewness and improved model generalization across classifiers."
+      ],
+      architecture: [
+        "Data Cleaning: Mean imputation for numeric columns and most-frequent (mode) imputation for categorical columns via Scikit-Learn SimpleImputer.",
+        "Encoding: Label Encoding for ordinal features (Education_Level, Loan_Approved target) and One-Hot Encoding for nominal categoricals (Employment_Status, Loan_Purpose, Gender, etc.).",
+        "Feature Scaling: StandardScaler fit on training set and applied to test set — preventing data leakage.",
+        "Feature Engineering: Polynomial (²) and log1p transformations applied to skewed numeric columns post-scaling to improve classifier performance.",
+        "Evaluation: All models scored on Precision, Recall, F1 Score, Accuracy, and Confusion Matrix on an 80/20 stratified train-test split (random_state=42)."
+      ]
+    }
+  },
+  {
+
     id: "public-health-analytics",
     title: "India Public Health Analytics Pipeline",
     subtitle: "Statistical Modeling & OLS Regression for NFHS-4 Health Indicators",
