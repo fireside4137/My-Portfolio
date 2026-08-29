@@ -99,6 +99,23 @@ export const projects = [
     github: "https://github.com/fireside4137/CreditWise",
     demo: null,
     heatmapImage: "/creditwise_heatmap.png",
+    additionalCharts: [
+      {
+        src: "/LoanApprovalPercentage_piechart.png",
+        alt: "Loan Approval Class Imbalance",
+        caption: "Target variable distribution showing a ~70/30 class imbalance, emphasizing the need for Precision over Accuracy."
+      },
+      {
+        src: "/Applicant_count_CreditScore_LoanApproval_hue.png",
+        alt: "Credit Score vs Loan Approval",
+        caption: "Distribution of loan approvals grouped by Credit Score. Higher credit scores strongly correlate with approved loans."
+      },
+      {
+        src: "/Box_plots.png",
+        alt: "Feature Distribution Box Plots",
+        caption: "Box plots revealing outliers and distribution variance across continuous features prior to standard scaling."
+      }
+    ],
     details: {
       problem: "Banks and financial institutions process thousands of loan applications daily. Manually reviewing each one is time-consuming and prone to bias. CreditWise automates the loan approval decision using a rigorous end-to-end ML pipeline trained and evaluated on real-world-style applicant data with 20 features.",
       keyFindings: [

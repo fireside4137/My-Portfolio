@@ -126,6 +126,30 @@ export default function ProjectModal({ project, onClose }) {
               </p>
             </div>
           )}
+          {/* Additional EDA Charts (CreditWise) */}
+          {project.additionalCharts && project.additionalCharts.length > 0 && (
+            <div className="space-y-4 pt-4 border-t border-slate-800">
+              <h4 className="text-base font-semibold text-slate-100 flex items-center gap-2">
+                <BarChart3 size={18} className="text-emerald-400" /> Exploratory Data Analysis (EDA) Gallery
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {project.additionalCharts.map((chart, idx) => (
+                  <div key={idx} className="space-y-2">
+                    <div className="rounded-xl overflow-hidden border border-slate-800 bg-slate-950 flex items-center justify-center h-48 sm:h-56">
+                      <img
+                        src={chart.src}
+                        alt={chart.alt}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <p className="text-xs text-slate-400 font-mono leading-relaxed px-1">
+                      {chart.caption}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
 
           {/* Tech Tags */}
