@@ -83,6 +83,73 @@ export const skills = {
 
 export const projects = [
   {
+    id: "smartcart-customer-segmentation",
+    title: "SmartCart — E-Commerce Customer Segmentation System",
+    subtitle: "Unsupervised Machine Learning & PCA-Driven Behavioral Clustering System",
+    category: "Machine Learning & Unsupervised AI",
+    featured: true,
+    tags: ["Python", "Scikit-Learn", "PCA", "Hierarchical Clustering", "K-Means", "Pandas", "Seaborn", "JupyterLab"],
+    shortDescription: "End-to-end unsupervised ML system transforming raw retail transaction data of 2,241 customers into 4 distinct behavioral personas via PCA dimensionality reduction and Hierarchical Clustering.",
+    metrics: [
+      { label: "Optimal Clusters", value: "K = 4 Segments" },
+      { label: "Customer Records", value: "2,241 Rows" },
+      { label: "Selected Model", value: "Agglomerative" },
+      { label: "Attributes Analyzed", value: "22 Features" }
+    ],
+    github: "https://github.com/fireside4137/SmartCart",
+    demo: null,
+    heatmapImage: "/smartcart/correlation_heatmap.png",
+    additionalCharts: [
+      {
+        src: "/smartcart/pca_3d_projection.png",
+        alt: "3D PCA Spatial Projection",
+        caption: "3D Principal Component Analysis (PCA) spatial projection reducing multi-dimensional demographic and behavioral features into lower-dimensional space."
+      },
+      {
+        src: "/smartcart/optimal_k_elbow_silhouette.png",
+        alt: "Optimal K Evaluation (Elbow vs Silhouette)",
+        caption: "Intersection of Elbow Method (WCSS minimization) and Silhouette Analysis confirming K=4 as the optimal cluster count."
+      },
+      {
+        src: "/smartcart/agglomerative_3d_clusters.png",
+        alt: "Agglomerative 3D Clusters (Chosen Model)",
+        caption: "Hierarchical Agglomerative Clustering (Ward Linkage, K=4) 3D spatial boundaries showing superior cluster separation over K-Means."
+      },
+      {
+        src: "/smartcart/income_vs_spending_clusters.png",
+        alt: "Income vs Spending Segmentation",
+        caption: "Segmentation mapping Income vs. Total Spending across 4 customer personas: Family Shoppers, High-Income Families, Digital Browsers, and Golden VIPs."
+      },
+      {
+        src: "/smartcart/cluster_distribution.png",
+        alt: "Customer Cluster Distribution",
+        caption: "Customer population proportion across the 4 identified behavioral clusters."
+      },
+      {
+        src: "/smartcart/kmeans_3d_clusters.png",
+        alt: "K-Means 3D Clusters Comparison",
+        caption: "Comparative K-Means 3D cluster plot evaluated against Hierarchical Agglomerative clustering."
+      }
+    ],
+    details: {
+      problem: "In e-commerce, generic 'one-size-fits-all' marketing strategies cause low conversion rates, customer fatigue, and inflated ad spend. SmartCart automates customer segmentation from 2,241 retail records to deliver targeted, high-ROI marketing strategies tailored to distinct buyer personas.",
+      keyFindings: [
+        "Identified 4 distinct customer personas using PCA + Hierarchical Clustering: Family Shoppers (Red), High-Income Families (Blue), Digital Browsers (Yellow), and Golden VIP Singles (Green).",
+        "Golden Cluster (VIP Singles): High income & spending with the highest marketing campaign response rate — prioritized for white-glove retention and exclusive early access.",
+        "Family Shoppers & Digital Browsers: High web visit frequency but low conversion rates — targeted with clearance pricing, bundle deals, and price-drop notifications.",
+        "PCA Dimensionality Reduction successfully captured maximum feature variance while eliminating multicollinearity across 22 demographic and purchasing attributes.",
+        "Agglomerative Hierarchical Clustering (Ward linkage) outperformed K-Means by establishing significantly clearer cluster boundary separation."
+      ],
+      architecture: [
+        "Data Cleaning & Imputation: Handled missing Income data using column median imputation; filtered demographic outliers (Age > 90).",
+        "Feature Engineering: Derived Age (2026 - Year_Birth), Customer_Tenure_Days, Total_Spending (across 6 product categories), and Total_Children (Kidhome + Teenhome).",
+        "Pre-processing & Scaling: Consolidated Education and Marital_Status categories; applied StandardScaler normalization to all continuous features.",
+        "Dimensionality Reduction: Principal Component Analysis (PCA) used to project high-dimensional features into 2D and 3D space.",
+        "Model Evaluation & Tuning: Combined Elbow Method (KneeLocator) and Silhouette Scores to establish K=4, comparing K-Means against Agglomerative Hierarchical Clustering."
+      ]
+    }
+  },
+  {
     id: "creditwise-loan-prediction",
     title: "CreditWise — Loan Approval Prediction ML Pipeline",
     subtitle: "End-to-End ML Classification Pipeline with Feature Engineering & Model Comparison",
