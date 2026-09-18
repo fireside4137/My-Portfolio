@@ -25,7 +25,28 @@ My core technical focus lies at the intersection of:
 
 ## 🌟 Featured Projects Highlighted in Portfolio
 
-### 📊 1. India Public Health Analytics Pipeline
+### 🛒 1. SmartCart — E-Commerce Customer Segmentation System
+* **Domain:** Unsupervised Machine Learning & Customer Analytics
+* **Stack:** Python 3.8+, Scikit-Learn (PCA, Agglomerative Clustering, K-Means), Pandas, Seaborn, Matplotlib, JupyterLab
+* **Key Achievements:**
+  * Processed **2,241 customer records** across 22 demographic and purchasing attributes to build an end-to-end unsupervised segmentation pipeline.
+  * Applied **Principal Component Analysis (PCA)** for 2D and 3D spatial projections, eliminating feature multicollinearity.
+  * Combined **Elbow Method (WCSS)** and **Silhouette Analysis** to mathematically establish **$K = 4$** as the optimal cluster count.
+  * Evaluated **Agglomerative Hierarchical Clustering (Ward linkage)** against K-Means, selecting Agglomerative for superior cluster boundary separation.
+  * Derived 4 actionable business personas (*Golden VIP Singles*, *High-Income Families*, *Family Shoppers*, *Digital Browsers*) with tailored marketing action matrices.
+* 🔗 **GitHub Repository:** [SmartCart](https://github.com/fireside4137/SmartCart)
+
+### 💳 2. CreditWise — Loan Approval Prediction ML Pipeline
+* **Domain:** Machine Learning & Financial Risk Modeling
+* **Stack:** Python, Scikit-Learn, Pandas, NumPy, Seaborn, Matplotlib, JupyterLab
+* **Key Achievements:**
+  * Built an end-to-end binary classification pipeline predicting loan approvals across **1,001 applicant records** and 20 features.
+  * Trained and compared **Logistic Regression**, **KNN ($k=5$)**, and **Gaussian Naive Bayes**, achieving **87.0% Accuracy** (LogReg) and **80.4% Precision** (Naive Bayes).
+  * Optimized for **Precision** as the primary metric to minimize false approvals and credit default risk.
+  * Engineered polynomial ($DTI\_Ratio^2$, $Credit\_Score^2$) and log ($\log1p$) features to reduce skewness and boost classifier generalization.
+* 🔗 **GitHub Repository:** [CreditWise](https://github.com/fireside4137/CreditWise)
+
+### 📊 3. India Public Health Analytics Pipeline
 * **Domain:** Data Science & Econometrics
 * **Stack:** Python 3.10+, Pandas, SciPy, Statsmodels, Seaborn
 * **Key Achievements:**
@@ -34,7 +55,7 @@ My core technical focus lies at the intersection of:
   * Executed independent $t$-tests ($t = 12.450, p < 0.0001, \text{Cohen's } d = 0.98$) proving high-literacy districts achieve a **+25.5% higher hospital delivery rate** (84.2% vs 58.7%).
 * 🔗 **GitHub Repository:** [India-public-health-analytics](https://github.com/fireside4137/India-public-health-analytics)
 
-### 🎯 2. MarkIt — AI Powered Biometric Attendance System
+### 🎯 4. MarkIt — AI Powered Biometric Attendance System
 * **Domain:** AI, Computer Vision & Deep Voice Biometrics
 * **Stack:** Python, Streamlit, dlib, Resemblyzer, Supabase Vector DB, Scikit-Learn, OpenCV, bcrypt
 * **Key Achievements:**
@@ -42,7 +63,7 @@ My core technical focus lies at the intersection of:
   * **Deep Voice Pipeline:** Utilized Resemblyzer d-vector neural network encoders to extract 256-d speaker voiceprints, matching utterance samples against enrolled templates via cosine similarity ($\text{threshold} \ge 0.65$).
 * 🚀 **Live Demo Web Application:** [markit-landing-page.vercel.app](https://markit-landing-page.vercel.app)
 
-### 🏢 3. Telite LMS — Multi-Tenant Learning Platform
+### 🏢 5. Telite LMS — Multi-Tenant Learning Platform
 * **Domain:** Full-Stack & Data Architecture (Software Engineering Internship @ Telite Systems Pvt. Ltd.)
 * **Stack:** Python 3.12, FastAPI, PostgreSQL RLS, SQLAlchemy, Pandas, Redis, Celery, Docker Compose
 * **Key Achievements:**
@@ -69,7 +90,8 @@ This portfolio website was designed from scratch as a **standalone engineering p
 ### 📐 Project Folder Layout
 ```
 portfolio-website/
-├── public/                     # Static assets (Resume.pdf, profile_picture.jpg, football photos)
+├── public/                     # Static assets (Resume.pdf, profile_picture.jpg, football photos, smartcart charts)
+│   └── smartcart/              # SmartCart EDA & PCA 3D cluster visualizations
 ├── src/
 │   ├── main.jsx                # React DOM entrypoint
 │   ├── App.jsx                 # Main application layout & state wrapper
