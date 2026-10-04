@@ -108,21 +108,21 @@ export default function ProjectModal({ project, onClose }) {
             </div>
           </div>
 
-          {/* Correlation Heatmap Visualization (CreditWise) */}
+          {/* Project visualization */}
           {project.heatmapImage && (
             <div className="space-y-3">
               <h4 className="text-base font-semibold text-slate-100 flex items-center gap-2">
-                <BarChart3 size={18} className="text-cyan-400" /> Feature Correlation Heatmap
+                <BarChart3 size={18} className="text-cyan-400" /> {project.heatmapTitle || "Feature Correlation Heatmap"}
               </h4>
               <div className="rounded-xl overflow-hidden border border-slate-800 bg-slate-950">
                 <img
                   src={project.heatmapImage}
-                  alt="Feature Correlation Heatmap"
+                  alt={project.heatmapAlt || "Feature Correlation Heatmap"}
                   className="w-full object-contain max-h-96"
                 />
               </div>
               <p className="text-xs text-slate-400 font-mono">
-                Pearson correlation matrix across 28 encoded features post One-Hot Encoding. Highlights strong positive correlation between Credit_Score² and DTI_Ratio², and negative correlation with loan approval probability.
+                {project.heatmapDescription || "Pearson correlation matrix across 28 encoded features post One-Hot Encoding. Highlights strong positive correlation between Credit_Score² and DTI_Ratio², and negative correlation with loan approval probability."}
               </p>
             </div>
           )}

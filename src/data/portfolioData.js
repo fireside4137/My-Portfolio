@@ -99,6 +99,9 @@ export const projects = [
     github: "https://github.com/fireside4137/PowerPredict",
     demo: "https://powerpredict-main.streamlit.app/",
     heatmapImage: "/PowerPredict/nn_architecture.png",
+    heatmapTitle: "PowerPredict Feedforward Neural Network Architecture",
+    heatmapAlt: "Diagram of the PowerPredict neural network with four input features, two six-neuron ReLU hidden layers, and one linear power-output node.",
+    heatmapDescription: "Feedforward ANN architecture for predicting power output: four inputs (AT, V, AP, RH), two hidden layers with six ReLU neurons each, and one linear output for PE (MW). The model has 79 trainable parameters and uses mean squared error loss.",
     additionalCharts: [
       { src: "/PowerPredict/Actual_vs_predicted.png", alt: "Actual vs Predicted", caption: "Actual vs. Predicted Power Output" },
       { src: "/PowerPredict/Minimization_of_Loss.png", alt: "Loss Convergence", caption: "Training & Validation Loss Convergence" },
