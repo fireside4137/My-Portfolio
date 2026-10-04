@@ -25,6 +25,16 @@ My core technical focus lies at the intersection of:
 
 ## 🌟 Featured Projects Highlighted in Portfolio
 
+### 🚀 0. PowerPredict — ANN Regression for Power Plant Energy Output
+* **Domain:** Machine Learning & Energy Systems & ANN
+* **Stack:** Python, PyTorch, Scikit-Learn, Pandas, NumPy, Matplotlib, Streamlit, Joblib, Pytest
+* **Key Achievements:**
+  * Predicts net hourly electrical output of a Combined Cycle Power Plant from four ambient variables with R² = 0.9276.
+  * PyTorch MLP model (79 parameters) converges in 25 epochs, achieving RMSE = 4.49 MW.
+  * Deployed via Streamlit UI with interactive sliders and batch CSV inference.
+* 🔗 **GitHub Repository:** [PowerPredict](https://github.com/fireside4137/PowerPredict)
+* 🚀 **Live Demo:** https://powerpredict-main.streamlit.app/
+
 ### 🛒 1. SmartCart — E-Commerce Customer Segmentation System
 * **Domain:** Unsupervised Machine Learning & Customer Analytics
 * **Stack:** Python 3.8+, Scikit-Learn (PCA, Agglomerative Clustering, K-Means), Pandas, Seaborn, Matplotlib, JupyterLab
