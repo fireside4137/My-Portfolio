@@ -65,7 +65,7 @@ export const skills = {
   dataScience: [
     "Python", "SQL", "Pandas", "NumPy", "Statsmodels", "SciPy", 
     "Scikit-Learn", "OLS Regression", "Hypothesis Testing (t-test, ANOVA)", 
-    "A/B Testing & EDA", "Matplotlib / Seaborn"
+    "A/B Testing & EDA", "Matplotlib / Seaborn", "PyTorch", "Joblib"
   ],
   aiBiometrics: [
     "Computer Vision (OpenCV)", "dlib 68-Landmark Predictor", "ResNet Face Embeddings", 
@@ -82,6 +82,44 @@ export const skills = {
 };
 
 export const projects = [
+  {
+    id: "powerpredict-energy-output",
+    title: "PowerPredict — Combined Cycle Power Plant Energy Output Predictor",
+    subtitle: "ANN Regression Model for Hourly Power Output Forecasting",
+    category: "Machine Learning & Energy Systems & ANN",
+    featured: true,
+    tags: ["Python","PyTorch","Scikit-Learn","Pandas","NumPy","Matplotlib","Streamlit","Joblib","Pytest"],
+    shortDescription: "PyTorch ANN predicts net hourly electrical output of a Combined Cycle Power Plant from ambient temperature, vacuum, pressure, and humidity.",
+    metrics: [
+      { label: "R²", value: "0.9276" },
+      { label: "Test RMSE", value: "4.49 MW" },
+      { label: "Dataset Size", value: "9,568 samples" },
+      { label: "Model", value: "PyTorch MLP (79 params)" }
+    ],
+    github: "https://github.com/fireside4137/PowerPredict",
+    demo: "https://powerpredict-main.streamlit.app/",
+    heatmapImage: "/powerpredict/nn_architecture.png",
+    additionalCharts: [
+      { src: "/powerpredict/actual_vs_predicted.png", alt: "Actual vs Predicted", caption: "Actual vs. Predicted Power Output" },
+      { src: "/powerpredict/loss_minimization.png", alt: "Loss Convergence", caption: "Training & Validation Loss Convergence" },
+      { src: "/powerpredict/residual_distribution.png", alt: "Residual Distribution", caption: "Residual Error Distribution" }
+    ],
+    details: {
+      problem: "Predict the net hourly electrical energy output (PE) of a Combined Cycle Power Plant from four ambient thermodynamic variables (AT, V, AP, RH). Accurate forecasts are essential for grid dispatch, fuel optimization, and operational planning.",
+      keyFindings: [
+        "PyTorch MLP achieved R² = 0.9276 and RMSE = 4.49 MW on the test set.",
+        "Ambient temperature proved to be the dominant factor influencing output.",
+        "Model converged within 25 epochs with stable validation loss.",
+        "Residuals are zero‑centered and homoscedastic, indicating unbiased predictions."
+      ],
+      architecture: [
+        "Data pipeline – CSV load → StandardScaler (saved with Joblib).",
+        "Model – PyTorch nn.Module with 2 hidden layers (6 units each, ReLU).",
+        "Training – Adam optimizer (lr = 0.001), MSE loss, batch = 32, early‑stop on validation.",
+        "Deployment – Interactive Streamlit UI with sliders, presets, and CSV batch inference."
+      ]
+    }
+  },
   {
     id: "smartcart-customer-segmentation",
     title: "SmartCart — E-Commerce Customer Segmentation System",
