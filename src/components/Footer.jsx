@@ -10,7 +10,7 @@ export default function Footer() {
         </div>
         <div className="flex items-center gap-6 text-slate-400 font-mono">
           <a href="#projects" className="hover:text-cyan-400 transition-colors">Projects</a>
-          <a href="#analytics" className="hover:text-cyan-400 transition-colors">Analytics</a>
+          <a href="#contact" className="hover:text-cyan-400 transition-colors">Contact</a>
           <a href="#skills" className="hover:text-cyan-400 transition-colors">Skills</a>
           <a href="#experience" className="hover:text-cyan-400 transition-colors">Experience</a>
         </div>

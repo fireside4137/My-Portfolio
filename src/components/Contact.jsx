@@ -132,8 +132,9 @@ export default function Contact() {
               )}
 
               <div>
-                <label className="block text-xs font-mono text-slate-400 mb-1 uppercase">Name</label>
+                <label htmlFor="contact-name" className="block text-xs font-mono text-slate-400 mb-1 uppercase">Name</label>
                 <input
+                  id="contact-name"
                   type="text"
                   required
                   value={formData.name}
@@ -144,8 +145,9 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-slate-400 mb-1 uppercase">Email Address</label>
+                <label htmlFor="contact-email" className="block text-xs font-mono text-slate-400 mb-1 uppercase">Email Address</label>
                 <input
+                  id="contact-email"
                   type="email"
                   required
                   value={formData.email}
@@ -156,8 +158,9 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-slate-400 mb-1 uppercase">Message</label>
+                <label htmlFor="contact-message" className="block text-xs font-mono text-slate-400 mb-1 uppercase">Message</label>
                 <textarea
+                  id="contact-message"
                   rows={4}
                   required
                   value={formData.message}

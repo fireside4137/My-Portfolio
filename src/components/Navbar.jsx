@@ -88,6 +88,9 @@ export default function Navbar({ onOpenResumeModal }) {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
             className="md:hidden p-2 text-slate-400 hover:text-white rounded-lg"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -96,8 +99,11 @@ export default function Navbar({ onOpenResumeModal }) {
       </div>
 
       {/* Mobile Dropdown */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-3 pb-6 mt-3 space-y-3">
+      <div
+        id="mobile-navigation"
+        hidden={!mobileMenuOpen}
+        className="md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-3 pb-6 mt-3 space-y-3"
+      >
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -117,8 +123,7 @@ export default function Navbar({ onOpenResumeModal }) {
               Contact Me
             </a>
           </div>
-        </div>
-      )}
+      </div>
     </nav>
   );
 }

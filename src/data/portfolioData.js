@@ -140,6 +140,9 @@ export const projects = [
     github: "https://github.com/fireside4137/SmartCart",
     demo: null,
     heatmapImage: "/smartcart/correlation_heatmap.png",
+    heatmapTitle: "Customer Feature Correlation Heatmap",
+    heatmapAlt: "Correlation heatmap of SmartCart customer demographic and purchasing features.",
+    heatmapDescription: "Pairwise correlation matrix for the engineered customer demographic and purchasing features used in SmartCart segmentation. The PCA projections and cluster visualizations below show how customer groups separate in reduced-dimensional space.",
     additionalCharts: [
       {
         src: "/smartcart/pca_3d_projection.png",
@@ -207,6 +210,9 @@ export const projects = [
     github: "https://github.com/fireside4137/CreditWise",
     demo: null,
     heatmapImage: "/creditwise_heatmap.png",
+    heatmapTitle: "Loan Feature Correlation Heatmap",
+    heatmapAlt: "Correlation heatmap of engineered loan application features and approval outcomes.",
+    heatmapDescription: "Pearson correlation matrix across 28 encoded features after one-hot encoding. It highlights strong positive correlation between Credit_Score² and DTI_Ratio², and negative correlation with loan approval probability.",
     additionalCharts: [
       {
         src: "/LoanApprovalPercentage_piechart.png",

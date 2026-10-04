@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Trophy, Camera } from 'lucide-react';
+import useAccessibleDialog from '../hooks/useAccessibleDialog';
 
 export default function FootballPhotosModal({ isOpen, onClose }) {
   const [activeIdx, setActiveIdx] = useState(0);
+  const dialogRef = useAccessibleDialog(isOpen, onClose);
 
   if (!isOpen) return null;
 
@@ -31,6 +33,11 @@ export default function FootballPhotosModal({ isOpen, onClose }) {
       onClick={onClose}
     >
       <div 
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="football-photos-modal-title"
+        tabIndex={-1}
         className="relative w-full max-w-3xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
@@ -39,7 +46,7 @@ export default function FootballPhotosModal({ isOpen, onClose }) {
           <div className="flex items-center gap-2">
             <Trophy size={18} className="text-purple-400" />
             <div>
-              <h3 className="text-base font-bold text-slate-100">
+              <h3 id="football-photos-modal-title" className="text-base font-bold text-slate-100">
                 Inter-Collegiate Football Tournament Photos
               </h3>
               <p className="text-xs text-slate-400 font-mono">
@@ -50,6 +57,7 @@ export default function FootballPhotosModal({ isOpen, onClose }) {
 
           <button
             onClick={onClose}
+            aria-label="Close football photos"
             className="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-colors"
           >
             <X size={18} />
@@ -69,6 +77,7 @@ export default function FootballPhotosModal({ isOpen, onClose }) {
             {/* Navigation Arrows */}
             <button
               onClick={prevPhoto}
+              aria-label="Previous photo"
               className="absolute left-3 p-2.5 rounded-full bg-slate-950/80 hover:bg-slate-800 text-slate-200 border border-slate-700 transition-colors shadow-lg"
               title="Previous Photo"
             >
@@ -77,6 +86,7 @@ export default function FootballPhotosModal({ isOpen, onClose }) {
 
             <button
               onClick={nextPhoto}
+              aria-label="Next photo"
               className="absolute right-3 p-2.5 rounded-full bg-slate-950/80 hover:bg-slate-800 text-slate-200 border border-slate-700 transition-colors shadow-lg"
               title="Next Photo"
             >
@@ -97,6 +107,8 @@ export default function FootballPhotosModal({ isOpen, onClose }) {
                 <button
                   key={idx}
                   onClick={() => setActiveIdx(idx)}
+                  aria-label={`Show photo ${idx + 1}`}
+                  aria-pressed={activeIdx === idx}
                   className={`px-3 py-1 rounded-md font-mono transition-all ${
                     activeIdx === idx
                       ? 'bg-purple-500 text-slate-950 font-bold'

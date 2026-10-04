@@ -1,8 +1,11 @@
 import React from 'react';
 import { X, Download, ExternalLink } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
+import useAccessibleDialog from '../hooks/useAccessibleDialog';
 
 export default function ResumeModal({ isOpen, onClose }) {
+  const dialogRef = useAccessibleDialog(isOpen, onClose);
+
   if (!isOpen) return null;
 
   return (
@@ -11,13 +14,18 @@ export default function ResumeModal({ isOpen, onClose }) {
       onClick={onClose}
     >
       <div 
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="resume-modal-title"
+        tabIndex={-1}
         className="relative w-full max-w-4xl h-[85vh] bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="px-6 py-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between gap-4">
           <div>
-            <h3 className="text-lg font-bold text-slate-100">
+            <h3 id="resume-modal-title" className="text-lg font-bold text-slate-100">
               {personalInfo.name} — Official Resume
             </h3>
             <p className="text-xs text-slate-400 font-mono">
@@ -35,6 +43,7 @@ export default function ResumeModal({ isOpen, onClose }) {
             </a>
             <button
               onClick={onClose}
+              aria-label="Close resume preview"
               className="p-2 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition-colors"
             >
               <X size={18} />

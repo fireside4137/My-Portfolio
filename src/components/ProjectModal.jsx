@@ -1,12 +1,20 @@
 import React from 'react';
 import { X, Github, ExternalLink, CheckCircle2, Cpu, BarChart3, Database, Layers, ArrowUpRight } from 'lucide-react';
+import useAccessibleDialog from '../hooks/useAccessibleDialog';
 
 export default function ProjectModal({ project, onClose }) {
+  const dialogRef = useAccessibleDialog(Boolean(project), onClose);
+
   if (!project) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
       <div 
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-case-study-title"
+        tabIndex={-1}
         className="relative w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
@@ -16,7 +24,7 @@ export default function ProjectModal({ project, onClose }) {
             <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono mb-2 border border-cyan-500/20">
               {project.category}
             </div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-slate-100 tracking-tight">
+            <h3 id="project-case-study-title" className="text-2xl sm:text-3xl font-bold text-slate-100 tracking-tight">
               {project.title}
             </h3>
             <p className="text-sm text-slate-400 mt-1">
@@ -26,6 +34,7 @@ export default function ProjectModal({ project, onClose }) {
 
           <button
             onClick={onClose}
+            aria-label="Close case study"
             className="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
           >
             <X size={20} />
@@ -117,12 +126,12 @@ export default function ProjectModal({ project, onClose }) {
               <div className="rounded-xl overflow-hidden border border-slate-800 bg-slate-950">
                 <img
                   src={project.heatmapImage}
-                  alt={project.heatmapAlt || "Feature Correlation Heatmap"}
+                  alt={project.heatmapAlt || "Correlation heatmap of features used in this project."}
                   className="w-full object-contain max-h-96"
                 />
               </div>
               <p className="text-xs text-slate-400 font-mono">
-                {project.heatmapDescription || "Pearson correlation matrix across 28 encoded features post One-Hot Encoding. Highlights strong positive correlation between Credit_Score² and DTI_Ratio², and negative correlation with loan approval probability."}
+                {project.heatmapDescription || "Correlation matrix showing pairwise relationships among the features used in this project."}
               </p>
             </div>
           )}
@@ -172,6 +181,7 @@ export default function ProjectModal({ project, onClose }) {
         <div className="p-4 bg-slate-950 border-t border-slate-800 text-right">
           <button
             onClick={onClose}
+            aria-label="Close case study"
             className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition-colors"
           >
             Close Case Study
