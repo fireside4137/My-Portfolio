@@ -98,11 +98,11 @@ export const projects = [
     ],
     github: "https://github.com/fireside4137/PowerPredict",
     demo: "https://powerpredict-main.streamlit.app/",
-    heatmapImage: "/powerpredict/nn_architecture.png",
+    heatmapImage: "/PowerPredict/nn_architecture.png",
     additionalCharts: [
-      { src: "public/powerpredict/actual_vs_predicted.png", alt: "Actual vs Predicted", caption: "Actual vs. Predicted Power Output" },
-      { src: "public/powerpredict/loss_minimization.png", alt: "Loss Convergence", caption: "Training & Validation Loss Convergence" },
-      { src: "public/powerpredict/residual_distribution.png", alt: "Residual Distribution", caption: "Residual Error Distribution" }
+      { src: "/PowerPredict/Actual_vs_predicted.png", alt: "Actual vs Predicted", caption: "Actual vs. Predicted Power Output" },
+      { src: "/PowerPredict/Minimization_of_Loss.png", alt: "Loss Convergence", caption: "Training & Validation Loss Convergence" },
+      { src: "/PowerPredict/Distribution_of_residuals.png", alt: "Residual Distribution", caption: "Residual Error Distribution" }
     ],
     details: {
       problem: "Predict the net hourly electrical energy output (PE) of a Combined Cycle Power Plant from four ambient thermodynamic variables (AT, V, AP, RH). Accurate forecasts are essential for grid dispatch, fuel optimization, and operational planning.",
