@@ -142,7 +142,7 @@ export const projects = [
     heatmapImage: "/smartcart/correlation_heatmap.png",
     heatmapTitle: "Customer Feature Correlation Heatmap",
     heatmapAlt: "Correlation heatmap of SmartCart customer demographic and purchasing features.",
-    heatmapDescription: "Pairwise correlation matrix for the engineered customer demographic and purchasing features used in SmartCart segmentation. The PCA projections and cluster visualizations below show how customer groups separate in reduced-dimensional space.",
+    heatmapDescription: "Pearson correlation matrix for the engineered customer features used in SmartCart segmentation. The analysis highlights strong positive relationships between income and total spending, as well as catalog purchases and income, while web visits show a negative relationship with income. These patterns informed the PCA reduction and cluster profiling used to identify four distinct customer personas.",
     additionalCharts: [
       {
         src: "/smartcart/pca_3d_projection.png",
