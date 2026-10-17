@@ -14,7 +14,7 @@
 
 ## 👨‍💻 About Me
 
-I am a **Computer Science Graduate (B.Tech, CGPA 7.9, GATE 2026 CS Qualified - Score 367)** from **THDC Institute of Hydropower Engineering and Technology (THDC-IHET)** and an alumnus of **Sainik School Ghorakhal (10th: 96.8%)** and **DAV Centenary Public School (12th: 96.6%)**.
+I am a **Computer Science Graduate (B.Tech, CGPA 8.04, GATE 2026 CS Qualified - Score 367)** from **THDC Institute of Hydropower Engineering and Technology (THDC-IHET)** and an alumnus of **Sainik School Ghorakhal (10th: 96.8%)** and **DAV Centenary Public School (12th: 96.6%)**.
 
 My core technical focus lies at the intersection of:
 1. **Data Analytics & Econometric Modeling:** OLS regression, hypothesis testing ($t$-tests, ANOVA, $\chi^2$), data cleaning pipelines, and domain validation.
@@ -35,7 +35,19 @@ My core technical focus lies at the intersection of:
 * 🔗 **GitHub Repository:** [PowerPredict](https://github.com/fireside4137/PowerPredict)
 * 🚀 **Live Demo:** https://powerpredict-main.streamlit.app/
 
-### 🛒 1. SmartCart — E-Commerce Customer Segmentation System
+### 🖼️ 1. CIFAR-10 Image Classification with PyTorch CNN
+* **Domain:** Deep Learning, Computer Vision & CNN Architecture
+* **Stack:** Python, PyTorch, Torchvision, Streamlit, Gradio, Matplotlib, NumPy
+* **Key Achievements:**
+  * Implemented a custom 3-stage hierarchical ConvNet from scratch with 620,810 trainable parameters (~2.37 MB) on the CIFAR-10 benchmark.
+  * Conducted an empirical study on the overfitting dynamic: baseline unregularized model diverged at epoch 4 with validation loss exploding by +53% ($0.7025 \to 1.0777$).
+  * Systematically resolved overfitting by introducing `BatchNorm2d`, dual-level dropout (`Dropout2d(0.25)` on spatial feature maps and `Dropout(0.5)` on dense layers), and dynamic data augmentation (`RandomCrop`, `RandomHorizontalFlip`).
+  * Attained **74.57% test accuracy** with monotonic validation loss convergence (0.7309) across 25 epochs.
+  * Deployed dual interactive prototypes: Streamlit web application on Streamlit Community Cloud and Gradio interface with automated public tunnels.
+* 🔗 **GitHub Repository:** [cifar10-cnn-from-scratch](https://github.com/fireside4137/cifar10-cnn-from-scratch)
+* 🚀 **Live Demo:** https://cifar10-cnn-from-scratch-prototype.streamlit.app/
+
+### 🛒 2. SmartCart — E-Commerce Customer Segmentation System
 * **Domain:** Unsupervised Machine Learning & Customer Analytics
 * **Stack:** Python 3.8+, Scikit-Learn (PCA, Agglomerative Clustering, K-Means), Pandas, Seaborn, Matplotlib, JupyterLab
 * **Key Achievements:**
@@ -46,7 +58,7 @@ My core technical focus lies at the intersection of:
   * Derived 4 actionable business personas (*Golden VIP Singles*, *High-Income Families*, *Family Shoppers*, *Digital Browsers*) with tailored marketing action matrices.
 * 🔗 **GitHub Repository:** [SmartCart](https://github.com/fireside4137/SmartCart)
 
-### 💳 2. CreditWise — Loan Approval Prediction ML Pipeline
+### 💳 3. CreditWise — Loan Approval Prediction ML Pipeline
 * **Domain:** Machine Learning & Financial Risk Modeling
 * **Stack:** Python, Scikit-Learn, Pandas, NumPy, Seaborn, Matplotlib, JupyterLab
 * **Key Achievements:**
@@ -56,7 +68,7 @@ My core technical focus lies at the intersection of:
   * Engineered polynomial ($DTI\_Ratio^2$, $Credit\_Score^2$) and log ($\log1p$) features to reduce skewness and boost classifier generalization.
 * 🔗 **GitHub Repository:** [CreditWise](https://github.com/fireside4137/CreditWise)
 
-### 📊 3. India Public Health Analytics Pipeline
+### 📊 4. India Public Health Analytics Pipeline
 * **Domain:** Data Science & Econometrics
 * **Stack:** Python 3.10+, Pandas, SciPy, Statsmodels, Seaborn
 * **Key Achievements:**
@@ -65,7 +77,7 @@ My core technical focus lies at the intersection of:
   * Executed independent $t$-tests ($t = 12.450, p < 0.0001, \text{Cohen's } d = 0.98$) proving high-literacy districts achieve a **+25.5% higher hospital delivery rate** (84.2% vs 58.7%).
 * 🔗 **GitHub Repository:** [India-public-health-analytics](https://github.com/fireside4137/India-public-health-analytics)
 
-### 🎯 4. MarkIt — AI Powered Biometric Attendance System
+### 🎯 5. MarkIt — AI Powered Biometric Attendance System
 * **Domain:** AI, Computer Vision & Deep Voice Biometrics
 * **Stack:** Python, Streamlit, dlib, Resemblyzer, Supabase Vector DB, Scikit-Learn, OpenCV, bcrypt
 * **Key Achievements:**
@@ -73,7 +85,7 @@ My core technical focus lies at the intersection of:
   * **Deep Voice Pipeline:** Utilized Resemblyzer d-vector neural network encoders to extract 256-d speaker voiceprints, matching utterance samples against enrolled templates via cosine similarity ($\text{threshold} \ge 0.65$).
 * 🚀 **Live Demo Web Application:** [markit-landing-page.vercel.app](https://markit-landing-page.vercel.app)
 
-### 🏢 5. Telite LMS — Multi-Tenant Learning Platform
+### 🏢 6. Telite LMS — Multi-Tenant Learning Platform
 * **Domain:** Full-Stack & Data Architecture (Software Engineering Internship @ Telite Systems Pvt. Ltd.)
 * **Stack:** Python 3.12, FastAPI, PostgreSQL RLS, SQLAlchemy, Pandas, Redis, Celery, Docker Compose
 * **Key Achievements:**

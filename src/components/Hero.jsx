@@ -24,7 +24,7 @@ export default function Hero({ onOpenResumeModal }) {
             </p>
 
             <p className="text-slate-300 text-base leading-relaxed max-w-2xl">
-              Computer Science graduate (B.Tech, CGPA 7.9, GATE 2026 Qualified). I build statistical data pipelines, computer vision & voice AI models, and scalable backend cloud applications.
+              Computer Science graduate (B.Tech, CGPA 8.04, GATE 2026 Qualified). I build statistical data pipelines, computer vision & voice AI models, and scalable backend cloud applications.
             </p>
 
             {/* Quick Badges */}

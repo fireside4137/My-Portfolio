@@ -2,7 +2,7 @@ export const personalInfo = {
   name: "Swapnil Upadhyay",
   title: "Aspiring Data Scientist & AI-ML Engineer",
   tagline: "Building predictive models, AI biometrics, and multi-tenant data pipelines.",
-  bio: "Computer Science graduate (B.Tech, CGPA 7.9, GATE 2026 Qualified). Proficient in predictive modeling, statistical analysis, and real-time dashboarding. Demonstrated success building end-to-end data applications processing unstructured vision and audio data, statistical OLS regressions, and multi-tenant cloud platforms.",
+  bio: "Computer Science graduate (B.Tech, CGPA 8.04, GATE 2026 Qualified). Proficient in predictive modeling, statistical analysis, and real-time dashboarding. Demonstrated success building end-to-end data applications processing unstructured vision and audio data, statistical OLS regressions, and multi-tenant cloud platforms.",
   location: "Uttarakhand, India",
   phone: "+91 8958688502",
   email: "swapnilupadhyay4137@gmail.com",
@@ -25,7 +25,7 @@ export const educationList = [
     institution: "THDC Institute of Hydropower Engineering and Technology (THDC-IHET)",
     location: "Tehri Garhwal, Uttarakhand",
     period: "2022 – 2026",
-    score: "7.9 CGPA",
+    score: "8.04 CGPA",
     details: "Focus on Data Science, Machine Learning, Database Architecture, and Distributed Systems."
   },
   {
@@ -120,6 +120,43 @@ export const projects = [
         "Model – PyTorch nn.Module with 2 hidden layers (6 units each, ReLU).",
         "Training – Adam optimizer (lr = 0.001), MSE loss, batch = 32, early‑stop on validation.",
         "Deployment – Interactive Streamlit UI with sliders, presets, and CSV batch inference."
+      ]
+    }
+  },
+  {
+    id: "cifar10-cnn-classifier",
+    title: "CIFAR-10 Image Classification with PyTorch CNN",
+    subtitle: "Custom 3-Stage Convolutional Neural Network with Modern Regularization & Overfitting Resolution",
+    category: "AI & Computer Vision",
+    featured: true,
+    tags: ["Python", "PyTorch", "Torchvision", "Streamlit", "Gradio", "Computer Vision", "CNN"],
+    shortDescription: "Custom 3-stage hierarchical ConvNet built from scratch in PyTorch for CIFAR-10 classification, featuring an empirical study curing severe overfitting via BatchNorm, Dual-Level Dropout, and Data Augmentation.",
+    metrics: [
+      { label: "Test Accuracy", value: "74.57%" },
+      { label: "Trainable Params", value: "620,810 (~2.37 MB)" },
+      { label: "Dataset Size", value: "60,000 RGB (10 Cls)" },
+      { label: "Regularization", value: "BN + Dropout (0.25, 0.5)" }
+    ],
+    github: "https://github.com/fireside4137/cifar10-cnn-from-scratch",
+    demo: "https://cifar10-cnn-from-scratch-prototype.streamlit.app/",
+    heatmapImage: "/CNN/cnn_architecture.svg",
+    heatmapTitle: "Custom 3-Stage CNN Feature Extractor & Classifier Architecture",
+    heatmapAlt: "Architectural blueprint of the 3-stage PyTorch CNN featuring Conv2D, BatchNorm, MaxPool, Spatial and Dense Dropout layers.",
+    heatmapDescription: "Hierarchical visual feature extractor: 3 consecutive convolutional blocks (32, 64, 128 feature channels with 3x3 kernels and stride 1) accompanied by per-batch normalization and spatial 2D dropout (p=0.25), feeding into a flattened 2,048-dim representation regularized by 50% dense dropout before predicting 10-class CIFAR-10 logits.",
+    details: {
+      problem: "Visual object classification on the CIFAR-10 benchmark requires capturing complex multi-scale spatial features across low-resolution (32x32) color images. High-capacity deep models quickly memorize pixel noise without regularization, leading to severe generalization divergence where training loss drops to 0.14 while validation loss skyrockets by +53%.",
+      keyFindings: [
+        "Overfitting Case Study: Baseline model without regularization diverged after epoch 4, memorizing training noise and causing validation loss to jump from 0.7025 to 1.0777 (+53%).",
+        "Batch Normalization Stabilization: Added nn.BatchNorm2d after each 2D convolution, normalizing channel activations per mini-batch to eliminate internal covariate shift and smoothen loss curvature.",
+        "Dual-Level Dropout Strategy: Deployed nn.Dropout2d(0.25) across spatial feature maps to break inter-channel co-adaptation, and nn.Dropout(0.5) on the 256-unit dense layer which accounts for 84.5% of total parameters.",
+        "Monotonic Convergence: Retrained for 25 epochs on Apple Silicon GPU (mps) with dynamic data augmentation (RandomCrop + RandomHorizontalFlip), attaining 74.57% test accuracy with stable validation loss (0.7309)."
+      ],
+      architecture: [
+        "Stage 1 (Low-Level Features): Conv2d(3→32, 3x3, p=1) → BatchNorm2d(32) → ReLU → MaxPool2d(2x2) → Dropout2d(0.25) [16x16x32].",
+        "Stage 2 (Mid-Level Textures): Conv2d(32→64, 3x3, p=1) → BatchNorm2d(64) → ReLU → MaxPool2d(2x2) → Dropout2d(0.25) [8x8x64].",
+        "Stage 3 (High-Level Semantics): Conv2d(64→128, 3x3, p=1) → BatchNorm2d(128) → ReLU → MaxPool2d(2x2) → Dropout2d(0.25) [4x4x128].",
+        "Classification Head: Flatten (2,048 spatial features) → Linear(2048→256) → ReLU → Dropout(0.5) → Linear(256→10) Logits.",
+        "Deployment Dual-Stack: Packaged with Streamlit Community Cloud UI for interactive web inference and Gradio for automated public shareable tunnels."
       ]
     }
   },

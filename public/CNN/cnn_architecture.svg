@@ -1,0 +1,269 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="100%" height="100%" style="background:#090d16; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="inputGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0284c7" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="block1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0891b2" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="block2Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="block3Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#6d28d9" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="fcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ec4899" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#be185d" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="outGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#059669" stop-opacity="0.08"/>
+    </linearGradient>
+    <!-- Arrow Marker -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <!-- Title & Legend -->
+  <text x="30" y="38" font-size="18" font-weight="700" fill="#f1f5f9" letter-spacing="0.5">Custom 3-Stage Regularized CNN Architecture (PyTorch)</text>
+  <text x="30" y="60" font-size="11" fill="#94a3b8">CIFAR-10 Benchmark (620,810 Trainable Parameters • Conv2d + BatchNorm2d + MaxPool + Spatial &amp; Dense Dropout)</text>
+
+  <!-- Color Legend Top Right -->
+  <g transform="translate(620, 24)">
+    <rect x="0" y="0" width="12" height="12" rx="3" fill="#06b6d4"/>
+    <text x="18" y="10" font-size="10" fill="#cbd5e1">Conv2d</text>
+    
+    <rect x="75" y="0" width="12" height="12" rx="3" fill="#10b981"/>
+    <text x="93" y="10" font-size="10" fill="#cbd5e1">BatchNorm</text>
+    
+    <rect x="175" y="0" width="12" height="12" rx="3" fill="#f59e0b"/>
+    <text x="193" y="10" font-size="10" fill="#cbd5e1">MaxPool</text>
+    
+    <rect x="255" y="0" width="12" height="12" rx="3" fill="#f43f5e"/>
+    <text x="273" y="10" font-size="10" fill="#cbd5e1">Dropout</text>
+  </g>
+
+  <!-- 1. Input Block -->
+  <g transform="translate(30, 95)">
+    <rect width="90" height="310" rx="12" fill="url(#inputGrad)" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4 2"/>
+    <text x="45" y="28" font-size="12" font-weight="700" fill="#38bdf8" text-anchor="middle">INPUT</text>
+    <text x="45" y="46" font-size="10" fill="#94a3b8" text-anchor="middle">CIFAR-10</text>
+    
+    <!-- 3D Image representation -->
+    <rect x="18" y="80" width="54" height="54" rx="4" fill="#0284c7" fill-opacity="0.3" stroke="#38bdf8" stroke-width="1.5"/>
+    <rect x="22" y="76" width="54" height="54" rx="4" fill="#0284c7" fill-opacity="0.2" stroke="#38bdf8" stroke-width="1.2"/>
+    <rect x="26" y="72" width="54" height="54" rx="4" fill="#0284c7" fill-opacity="0.1" stroke="#38bdf8" stroke-width="1"/>
+    
+    <text x="45" y="165" font-size="11" font-weight="600" fill="#f8fafc" text-anchor="middle">32 × 32 × 3</text>
+    <text x="45" y="185" font-size="9" fill="#94a3b8" text-anchor="middle">RGB Image</text>
+    
+    <line x1="12" y1="210" x2="78" y2="210" stroke="#334155" stroke-width="1"/>
+    <text x="45" y="235" font-size="9" fill="#64748b" text-anchor="middle">Standardized</text>
+    <text x="45" y="250" font-size="9" fill="#64748b" text-anchor="middle">μ=0.5, σ=0.5</text>
+    <text x="45" y="285" font-size="10" font-weight="700" fill="#64748b" text-anchor="middle">0 Params</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <line x1="125" y1="250" x2="148" y2="250" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- 2. Conv Block 1 -->
+  <g transform="translate(152, 95)">
+    <rect width="145" height="310" rx="12" fill="url(#block1Grad)" stroke="#06b6d4" stroke-width="1.5"/>
+    <text x="72" y="28" font-size="12" font-weight="700" fill="#22d3ee" text-anchor="middle">STAGE 1</text>
+    <text x="72" y="46" font-size="10" fill="#94a3b8" text-anchor="middle">Low-Level Features</text>
+    
+    <!-- Sub-layers -->
+    <rect x="12" y="65" width="121" height="32" rx="6" fill="#0f172a" stroke="#06b6d4" stroke-width="1"/>
+    <text x="22" y="85" font-size="10" font-weight="600" fill="#e2e8f0">Conv2d (3→32)</text>
+    <text x="125" y="85" font-size="9" fill="#22d3ee" text-anchor="end">3×3, p=1</text>
+
+    <rect x="12" y="105" width="121" height="28" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="22" y="123" font-size="10" font-weight="600" fill="#e2e8f0">BatchNorm2d</text>
+    <text x="125" y="123" font-size="9" fill="#34d399" text-anchor="end">32 ch</text>
+
+    <rect x="12" y="141" width="121" height="24" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="72" y="157" font-size="10" font-weight="600" fill="#cbd5e1" text-anchor="middle">ReLU Activation</text>
+
+    <rect x="12" y="173" width="121" height="28" rx="6" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="22" y="191" font-size="10" font-weight="600" fill="#e2e8f0">MaxPool2d</text>
+    <text x="125" y="191" font-size="9" fill="#fbbf24" text-anchor="end">2×2, s=2</text>
+
+    <rect x="12" y="209" width="121" height="28" rx="6" fill="#0f172a" stroke="#f43f5e" stroke-width="1"/>
+    <text x="22" y="227" font-size="10" font-weight="600" fill="#e2e8f0">Spatial Dropout</text>
+    <text x="125" y="227" font-size="9" fill="#fb7185" text-anchor="end">p = 0.25</text>
+
+    <line x1="12" y1="248" x2="133" y2="248" stroke="#334155" stroke-width="1"/>
+    <text x="72" y="268" font-size="11" font-weight="700" fill="#f8fafc" text-anchor="middle">16 × 16 × 32</text>
+    <text x="72" y="285" font-size="9" fill="#94a3b8" text-anchor="middle">8,192 Activations</text>
+    <text x="72" y="302" font-size="10" font-weight="700" fill="#22d3ee" text-anchor="middle">960 Params</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <line x1="302" y1="250" x2="323" y2="250" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- 3. Conv Block 2 -->
+  <g transform="translate(327, 95)">
+    <rect width="145" height="310" rx="12" fill="url(#block2Grad)" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="72" y="28" font-size="12" font-weight="700" fill="#60a5fa" text-anchor="middle">STAGE 2</text>
+    <text x="72" y="46" font-size="10" fill="#94a3b8" text-anchor="middle">Mid-Level Textures</text>
+    
+    <!-- Sub-layers -->
+    <rect x="12" y="65" width="121" height="32" rx="6" fill="#0f172a" stroke="#3b82f6" stroke-width="1"/>
+    <text x="22" y="85" font-size="10" font-weight="600" fill="#e2e8f0">Conv2d (32→64)</text>
+    <text x="125" y="85" font-size="9" fill="#60a5fa" text-anchor="end">3×3, p=1</text>
+
+    <rect x="12" y="105" width="121" height="28" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="22" y="123" font-size="10" font-weight="600" fill="#e2e8f0">BatchNorm2d</text>
+    <text x="125" y="123" font-size="9" fill="#34d399" text-anchor="end">64 ch</text>
+
+    <rect x="12" y="141" width="121" height="24" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="72" y="157" font-size="10" font-weight="600" fill="#cbd5e1" text-anchor="middle">ReLU Activation</text>
+
+    <rect x="12" y="173" width="121" height="28" rx="6" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="22" y="191" font-size="10" font-weight="600" fill="#e2e8f0">MaxPool2d</text>
+    <text x="125" y="191" font-size="9" fill="#fbbf24" text-anchor="end">2×2, s=2</text>
+
+    <rect x="12" y="209" width="121" height="28" rx="6" fill="#0f172a" stroke="#f43f5e" stroke-width="1"/>
+    <text x="22" y="227" font-size="10" font-weight="600" fill="#e2e8f0">Spatial Dropout</text>
+    <text x="125" y="227" font-size="9" fill="#fb7185" text-anchor="end">p = 0.25</text>
+
+    <line x1="12" y1="248" x2="133" y2="248" stroke="#334155" stroke-width="1"/>
+    <text x="72" y="268" font-size="11" font-weight="700" fill="#f8fafc" text-anchor="middle">8 × 8 × 64</text>
+    <text x="72" y="285" font-size="9" fill="#94a3b8" text-anchor="middle">4,096 Activations</text>
+    <text x="72" y="302" font-size="10" font-weight="700" fill="#60a5fa" text-anchor="middle">18,624 Params</text>
+  </g>
+
+  <!-- Arrow 3 -->
+  <line x1="477" y1="250" x2="498" y2="250" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- 4. Conv Block 3 -->
+  <g transform="translate(502, 95)">
+    <rect width="145" height="310" rx="12" fill="url(#block3Grad)" stroke="#8b5cf6" stroke-width="1.5"/>
+    <text x="72" y="28" font-size="12" font-weight="700" fill="#c084fc" text-anchor="middle">STAGE 3</text>
+    <text x="72" y="46" font-size="10" fill="#94a3b8" text-anchor="middle">High-Level Semantics</text>
+    
+    <!-- Sub-layers -->
+    <rect x="12" y="65" width="121" height="32" rx="6" fill="#0f172a" stroke="#8b5cf6" stroke-width="1"/>
+    <text x="22" y="85" font-size="10" font-weight="600" fill="#e2e8f0">Conv2d (64→128)</text>
+    <text x="125" y="85" font-size="9" fill="#c084fc" text-anchor="end">3×3, p=1</text>
+
+    <rect x="12" y="105" width="121" height="28" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="22" y="123" font-size="10" font-weight="600" fill="#e2e8f0">BatchNorm2d</text>
+    <text x="125" y="123" font-size="9" fill="#34d399" text-anchor="end">128 ch</text>
+
+    <rect x="12" y="141" width="121" height="24" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="72" y="157" font-size="10" font-weight="600" fill="#cbd5e1" text-anchor="middle">ReLU Activation</text>
+
+    <rect x="12" y="173" width="121" height="28" rx="6" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+    <text x="22" y="191" font-size="10" font-weight="600" fill="#e2e8f0">MaxPool2d</text>
+    <text x="125" y="191" font-size="9" fill="#fbbf24" text-anchor="end">2×2, s=2</text>
+
+    <rect x="12" y="209" width="121" height="28" rx="6" fill="#0f172a" stroke="#f43f5e" stroke-width="1"/>
+    <text x="22" y="227" font-size="10" font-weight="600" fill="#e2e8f0">Spatial Dropout</text>
+    <text x="125" y="227" font-size="9" fill="#fb7185" text-anchor="end">p = 0.25</text>
+
+    <line x1="12" y1="248" x2="133" y2="248" stroke="#334155" stroke-width="1"/>
+    <text x="72" y="268" font-size="11" font-weight="700" fill="#f8fafc" text-anchor="middle">4 × 4 × 128</text>
+    <text x="72" y="285" font-size="9" fill="#94a3b8" text-anchor="middle">2,048 Activations</text>
+    <text x="72" y="302" font-size="10" font-weight="700" fill="#c084fc" text-anchor="middle">74,112 Params</text>
+  </g>
+
+  <!-- Arrow 4 -->
+  <line x1="652" y1="250" x2="673" y2="250" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- 5. Flatten & Classifier Head -->
+  <g transform="translate(677, 95)">
+    <rect width="155" height="310" rx="12" fill="url(#fcGrad)" stroke="#ec4899" stroke-width="1.5"/>
+    <text x="77" y="28" font-size="12" font-weight="700" fill="#f472b6" text-anchor="middle">CLASSIFIER</text>
+    <text x="77" y="46" font-size="10" fill="#94a3b8" text-anchor="middle">Fully-Connected Head</text>
+    
+    <!-- Sub-layers -->
+    <rect x="12" y="65" width="131" height="30" rx="6" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+    <text x="22" y="84" font-size="10" font-weight="600" fill="#e2e8f0">Flatten</text>
+    <text x="135" y="84" font-size="9" fill="#94a3b8" text-anchor="end">2,048 nodes</text>
+
+    <rect x="12" y="103" width="131" height="32" rx="6" fill="#0f172a" stroke="#ec4899" stroke-width="1"/>
+    <text x="22" y="123" font-size="10" font-weight="600" fill="#e2e8f0">Linear (2048→256)</text>
+    <text x="135" y="123" font-size="9" fill="#f472b6" text-anchor="end">Dense</text>
+
+    <rect x="12" y="143" width="131" height="24" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="77" y="159" font-size="10" font-weight="600" fill="#cbd5e1" text-anchor="middle">ReLU Activation</text>
+
+    <rect x="12" y="175" width="131" height="28" rx="6" fill="#0f172a" stroke="#f43f5e" stroke-width="1"/>
+    <text x="22" y="193" font-size="10" font-weight="600" fill="#e2e8f0">Dense Dropout</text>
+    <text x="135" y="193" font-size="9" fill="#fb7185" text-anchor="end">p = 0.50</text>
+
+    <rect x="12" y="211" width="131" height="30" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1"/>
+    <text x="22" y="230" font-size="10" font-weight="600" fill="#e2e8f0">Linear (256→10)</text>
+    <text x="135" y="230" font-size="9" fill="#34d399" text-anchor="end">Logits</text>
+
+    <line x1="12" y1="248" x2="143" y2="248" stroke="#334155" stroke-width="1"/>
+    <text x="77" y="268" font-size="11" font-weight="700" fill="#f8fafc" text-anchor="middle">Dense Head</text>
+    <text x="77" y="285" font-size="9" fill="#94a3b8" text-anchor="middle">84.9% of Network</text>
+    <text x="77" y="302" font-size="10" font-weight="700" fill="#f472b6" text-anchor="middle">527,114 Params</text>
+  </g>
+
+  <!-- Arrow 5 -->
+  <line x1="837" y1="250" x2="858" y2="250" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- 6. Output Block -->
+  <g transform="translate(862, 95)">
+    <rect width="108" height="310" rx="12" fill="url(#outGrad)" stroke="#10b981" stroke-width="1.5"/>
+    <text x="54" y="28" font-size="12" font-weight="700" fill="#34d399" text-anchor="middle">OUTPUT</text>
+    <text x="54" y="46" font-size="10" fill="#94a3b8" text-anchor="middle">Class Probabilities</text>
+    
+    <!-- 10 Class Pills preview -->
+    <g transform="translate(10, 68)">
+      <rect x="0" y="0" width="88" height="15" rx="3" fill="#0f172a" stroke="#10b981" stroke-width="0.8"/>
+      <text x="8" y="11" font-size="8.5" fill="#34d399">airplane (78%)</text>
+      
+      <rect x="0" y="19" width="88" height="15" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8"/>
+      <text x="8" y="30" font-size="8.5" fill="#94a3b8">automobile</text>
+      
+      <rect x="0" y="38" width="88" height="15" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8"/>
+      <text x="8" y="49" font-size="8.5" fill="#94a3b8">bird</text>
+      
+      <rect x="0" y="57" width="88" height="15" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8"/>
+      <text x="8" y="68" font-size="8.5" fill="#94a3b8">cat</text>
+      
+      <rect x="0" y="76" width="88" height="15" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8"/>
+      <text x="8" y="87" font-size="8.5" fill="#94a3b8">deer</text>
+
+      <rect x="0" y="95" width="88" height="15" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8"/>
+      <text x="8" y="106" font-size="8.5" fill="#94a3b8">dog</text>
+
+      <rect x="0" y="114" width="88" height="15" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8"/>
+      <text x="8" y="125" font-size="8.5" fill="#94a3b8">frog</text>
+
+      <rect x="0" y="133" width="88" height="15" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8"/>
+      <text x="8" y="144" font-size="8.5" fill="#94a3b8">horse</text>
+
+      <rect x="0" y="152" width="88" height="15" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8"/>
+      <text x="8" y="163" font-size="8.5" fill="#94a3b8">ship</text>
+
+      <rect x="0" y="171" width="88" height="15" rx="3" fill="#0f172a" stroke="#334155" stroke-width="0.8"/>
+      <text x="8" y="182" font-size="8.5" fill="#94a3b8">truck</text>
+    </g>
+
+    <line x1="10" y1="264" x2="98" y2="264" stroke="#334155" stroke-width="1"/>
+    <text x="54" y="282" font-size="10" font-weight="700" fill="#34d399" text-anchor="middle">Top-1 Accuracy</text>
+    <text x="54" y="299" font-size="11" font-weight="700" fill="#f8fafc" text-anchor="middle">74.57%</text>
+  </g>
+
+  <!-- Bottom Metric Summary Bar -->
+  <g transform="translate(30, 420)">
+    <rect width="940" height="42" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+    
+    <text x="30" y="25" font-size="11" fill="#94a3b8">Input: <tspan fill="#38bdf8" font-weight="700">32×32×3 RGB</tspan></text>
+    <text x="210" y="25" font-size="11" fill="#94a3b8">Total Weights: <tspan fill="#22d3ee" font-weight="700">620,810 Params (~2.37 MB)</tspan></text>
+    <text x="520" y="25" font-size="11" fill="#94a3b8">Regularization: <tspan fill="#ec4899" font-weight="700">BatchNorm + Dropout(0.25, 0.5) + Augmentation</tspan></text>
+    <text x="860" y="25" font-size="11" fill="#94a3b8">Eval: <tspan fill="#34d399" font-weight="700">74.57% Test Acc</tspan></text>
+  </g>
+</svg>
