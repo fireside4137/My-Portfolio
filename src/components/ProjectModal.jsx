@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Github, ExternalLink, CheckCircle2, Cpu, BarChart3, Database, Layers, ArrowUpRight } from 'lucide-react';
+import { X, Github, ExternalLink, CheckCircle2, FileText, ArrowUpRight } from 'lucide-react';
 import useAccessibleDialog from '../hooks/useAccessibleDialog';
 
 export default function ProjectModal({ project, onClose }) {
@@ -8,150 +8,157 @@ export default function ProjectModal({ project, onClose }) {
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-slate-950/80 backdrop-blur-md overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-stone-900/50 dark:bg-black/80 backdrop-blur-sm overflow-y-auto">
       <div 
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="project-case-study-title"
         tabIndex={-1}
-        className="relative w-full max-w-4xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col"
+        className="relative w-full max-w-4xl bg-paper-100 dark:bg-obsidian-900 border border-paper-400 dark:border-obsidian-500 rounded-xl shadow-2xl overflow-hidden my-6 max-h-[92vh] flex flex-col font-sans"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="p-6 bg-slate-950 border-b border-slate-800 flex items-start justify-between gap-4 sticky top-0 z-10">
+        <div className="p-5 sm:p-6 bg-paper-50 dark:bg-obsidian-800 border-b border-paper-400 dark:border-obsidian-500 flex items-start justify-between gap-4 sticky top-0 z-10">
           <div>
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono mb-2 border border-cyan-500/20">
-              {project.category}
+            <div className="inline-flex items-center gap-2 text-xs font-mono text-sage-600 dark:text-sage-400 mb-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-sage-600 dark:bg-sage-400"></span>
+              <span className="uppercase tracking-wider font-semibold">Technical Dossier</span>
+              <span>//</span>
+              <span className="text-stone-600 dark:text-obsidian-200">{project.category}</span>
             </div>
-            <h3 id="project-case-study-title" className="text-2xl sm:text-3xl font-bold text-slate-100 tracking-tight">
+            <h3 id="project-case-study-title" className="text-xl sm:text-2xl font-serif font-bold text-paper-900 dark:text-obsidian-50 tracking-tight leading-snug">
               {project.title}
             </h3>
-            <p className="text-sm text-slate-400 mt-1">
-              {project.subtitle}
-            </p>
+            {project.subtitle && (
+              <p className="text-xs font-mono text-stone-500 dark:text-obsidian-200 mt-1">
+                {project.subtitle}
+              </p>
+            )}
           </div>
 
           <button
             onClick={onClose}
             aria-label="Close case study"
-            className="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+            className="p-1.5 rounded border border-paper-300 dark:border-obsidian-600 text-stone-500 dark:text-obsidian-300 hover:text-stone-900 dark:hover:text-white hover:bg-paper-200 dark:hover:bg-obsidian-700 transition-colors"
           >
-            <X size={20} />
+            <X size={18} />
           </button>
         </div>
 
         {/* Modal Scrollable Body */}
-        <div className="p-6 overflow-y-auto space-y-8 text-slate-300 text-sm">
+        <div className="p-5 sm:p-6 overflow-y-auto space-y-7 text-stone-800 dark:text-obsidian-100 text-sm">
+          
           {/* Key Metrics Banner */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-slate-950/60 border border-slate-800">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 p-3 rounded-lg bg-paper-50 dark:bg-obsidian-800 border border-paper-300 dark:border-obsidian-700 font-mono">
             {project.metrics.map((metric, idx) => (
-              <div key={idx} className="text-center p-2">
-                <div className="text-xs text-slate-400 font-mono uppercase tracking-wider">{metric.label}</div>
-                <div className="text-lg font-bold text-cyan-400 font-mono mt-0.5">{metric.value}</div>
+              <div key={idx} className="p-1">
+                <div className="text-[10px] text-stone-500 dark:text-obsidian-200 uppercase tracking-wider">{metric.label}</div>
+                <div className="text-base font-bold text-sage-600 dark:text-sage-400 mt-0.5">{metric.value}</div>
               </div>
             ))}
           </div>
 
-          {/* Action CTA Buttons */}
-          <div className="flex flex-wrap gap-4">
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-medium text-xs flex items-center gap-2 border border-slate-700 transition-colors"
-              >
-                <Github size={16} /> View GitHub Repository
-              </a>
-            )}
+          {/* Action CTAs */}
+          <div className="flex flex-wrap gap-3 font-mono text-xs">
             {project.demo && (
               <a
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-xs flex items-center gap-2 transition-all shadow-md shadow-cyan-500/20"
+                className="px-3 py-1.5 rounded bg-sage-600 hover:bg-sage-700 text-white dark:bg-sage-400 dark:hover:bg-sage-500 dark:text-stone-950 font-semibold flex items-center gap-1.5 transition-colors"
               >
-                <ExternalLink size={16} /> Launch Live Application <ArrowUpRight size={14} />
+                <ExternalLink size={13} /> Launch Live Prototype <ArrowUpRight size={12} />
+              </a>
+            )}
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded border border-paper-400 dark:border-obsidian-500 bg-paper-50 dark:bg-obsidian-800 hover:bg-paper-200 dark:hover:bg-obsidian-700 text-stone-800 dark:text-obsidian-100 font-medium flex items-center gap-1.5 transition-colors"
+              >
+                <Github size={13} /> View Source Code
               </a>
             )}
           </div>
 
           {/* Problem Statement */}
           <div className="space-y-2">
-            <h4 className="text-base font-semibold text-slate-100 flex items-center gap-2">
-              <Database size={18} className="text-cyan-400" /> Executive Problem Statement & Motivation
+            <h4 className="text-xs font-mono uppercase tracking-wider font-bold text-stone-800 dark:text-obsidian-100 flex items-center gap-2">
+              <span className="text-sage-600 dark:text-sage-400">01 //</span> Problem Formulation &amp; Scientific Motivation
             </h4>
-            <p className="text-slate-300 leading-relaxed bg-slate-950/40 p-4 rounded-xl border border-slate-800/80">
+            <div className="p-4 rounded-lg bg-paper-50 dark:bg-obsidian-800/80 border border-paper-300 dark:border-obsidian-700 leading-relaxed text-stone-700 dark:text-obsidian-100">
               {project.details.problem}
-            </p>
+            </div>
           </div>
 
           {/* Key Empirical Findings */}
           <div className="space-y-3">
-            <h4 className="text-base font-semibold text-slate-100 flex items-center gap-2">
-              <BarChart3 size={18} className="text-emerald-400" /> Key Insights & Quantitative Findings
+            <h4 className="text-xs font-mono uppercase tracking-wider font-bold text-stone-800 dark:text-obsidian-100 flex items-center gap-2">
+              <span className="text-sage-600 dark:text-sage-400">02 //</span> Quantitative Insights &amp; Empirical Findings
             </h4>
             <div className="space-y-2">
               {project.details.keyFindings.map((finding, idx) => (
-                <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-slate-950/40 border border-slate-800/50">
-                  <CheckCircle2 size={18} className="text-emerald-400 shrink-0 mt-0.5" />
-                  <span className="leading-relaxed text-slate-200">{finding}</span>
+                <div key={idx} className="flex items-start gap-2.5 p-3 rounded-lg bg-paper-50 dark:bg-obsidian-800/60 border border-paper-300 dark:border-obsidian-700 text-xs sm:text-sm leading-relaxed">
+                  <span className="text-sage-600 dark:text-sage-400 font-mono font-bold shrink-0 mt-0.5">[{idx + 1}]</span>
+                  <span className="text-stone-700 dark:text-obsidian-100">{finding}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Architecture & Software Engineering */}
+          {/* Pipeline Architecture */}
           <div className="space-y-3">
-            <h4 className="text-base font-semibold text-slate-100 flex items-center gap-2">
-              <Layers size={18} className="text-purple-400" /> ML Pipeline Architecture & Methodology
+            <h4 className="text-xs font-mono uppercase tracking-wider font-bold text-stone-800 dark:text-obsidian-100 flex items-center gap-2">
+              <span className="text-sage-600 dark:text-sage-400">03 //</span> Pipeline Architecture &amp; Methodology
             </h4>
             <div className="space-y-2">
               {project.details.architecture.map((arch, idx) => (
-                <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-slate-950/40 border border-slate-800/50">
-                  <div className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2 shrink-0" />
-                  <span className="leading-relaxed text-slate-300">{arch}</span>
+                <div key={idx} className="flex items-start gap-2.5 p-3 rounded-lg bg-paper-50 dark:bg-obsidian-800/60 border border-paper-300 dark:border-obsidian-700 text-xs sm:text-sm leading-relaxed">
+                  <div className="w-1.5 h-1.5 rounded-full bg-stone-500 dark:bg-obsidian-300 mt-2 shrink-0" />
+                  <span className="text-stone-700 dark:text-obsidian-200">{arch}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Project visualization */}
+          {/* Visual Blueprint / Heatmap */}
           {project.heatmapImage && (
-            <div className="space-y-3">
-              <h4 className="text-base font-semibold text-slate-100 flex items-center gap-2">
-                <BarChart3 size={18} className="text-cyan-400" /> {project.heatmapTitle || "Feature Correlation Heatmap"}
+            <div className="space-y-2">
+              <h4 className="text-xs font-mono uppercase tracking-wider font-bold text-stone-800 dark:text-obsidian-100 flex items-center gap-2">
+                <span className="text-sage-600 dark:text-sage-400">04 //</span> {project.heatmapTitle || "Figure: Architectural Blueprint"}
               </h4>
-              <div className="rounded-xl overflow-hidden border border-slate-800 bg-slate-950">
+              <div className="rounded-lg overflow-hidden border border-paper-300 dark:border-obsidian-700 bg-paper-50 dark:bg-obsidian-950 p-2 sm:p-4 flex items-center justify-center">
                 <img
                   src={project.heatmapImage}
-                  alt={project.heatmapAlt || "Correlation heatmap of features used in this project."}
+                  alt={project.heatmapAlt || "Architecture diagram"}
                   className="w-full object-contain max-h-96"
                 />
               </div>
-              <p className="text-xs text-slate-400 font-mono">
-                {project.heatmapDescription || "Correlation matrix showing pairwise relationships among the features used in this project."}
+              <p className="text-xs text-stone-500 dark:text-obsidian-200 font-mono px-1">
+                {project.heatmapDescription || "Architecture and parameter analysis."}
               </p>
             </div>
           )}
-          {/* Additional EDA Charts (CreditWise) */}
+
+          {/* Additional EDA Charts (CreditWise / SmartCart) */}
           {project.additionalCharts && project.additionalCharts.length > 0 && (
-            <div className="space-y-4 pt-4 border-t border-slate-800">
-              <h4 className="text-base font-semibold text-slate-100 flex items-center gap-2">
-                <BarChart3 size={18} className="text-emerald-400" /> Exploratory Data Analysis (EDA) Gallery
+            <div className="space-y-3 pt-3 border-t border-paper-300 dark:border-obsidian-700">
+              <h4 className="text-xs font-mono uppercase tracking-wider font-bold text-stone-800 dark:text-obsidian-100 flex items-center gap-2">
+                <span className="text-sage-600 dark:text-sage-400">05 //</span> Diagnostic Figures &amp; Feature Projections
               </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {project.additionalCharts.map((chart, idx) => (
-                  <div key={idx} className="space-y-2">
-                    <div className="rounded-xl overflow-hidden border border-slate-800 bg-slate-950 flex items-center justify-center h-48 sm:h-56">
+                  <div key={idx} className="space-y-1.5 p-2 rounded-lg bg-paper-50 dark:bg-obsidian-800/80 border border-paper-300 dark:border-obsidian-700">
+                    <div className="rounded overflow-hidden bg-paper-100 dark:bg-obsidian-950 flex items-center justify-center h-44">
                       <img
                         src={chart.src}
                         alt={chart.alt}
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <p className="text-xs text-slate-400 font-mono leading-relaxed px-1">
+                    <p className="text-[11px] text-stone-600 dark:text-obsidian-200 font-mono leading-tight px-1">
                       {chart.caption}
                     </p>
                   </div>
@@ -160,15 +167,16 @@ export default function ProjectModal({ project, onClose }) {
             </div>
           )}
 
-
           {/* Tech Tags */}
-          <div className="pt-4 border-t border-slate-800">
-            <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-3">Technologies & Libraries Used</h4>
-            <div className="flex flex-wrap gap-2">
+          <div className="pt-3 border-t border-paper-300 dark:border-obsidian-700">
+            <h4 className="text-[11px] font-mono uppercase tracking-wider text-stone-500 dark:text-obsidian-200 mb-2 font-semibold">
+              Implementation Dependencies
+            </h4>
+            <div className="flex flex-wrap gap-1.5 font-mono text-xs">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1 rounded-lg text-xs font-mono bg-slate-800 text-cyan-300 border border-slate-700/80"
+                  className="px-2 py-0.5 rounded bg-paper-200 dark:bg-obsidian-700 text-stone-800 dark:text-obsidian-50 border border-paper-400 dark:border-obsidian-500 text-[11px]"
                 >
                   {tag}
                 </span>
@@ -178,13 +186,16 @@ export default function ProjectModal({ project, onClose }) {
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 bg-slate-950 border-t border-slate-800 text-right">
+        <div className="p-4 bg-paper-50 dark:bg-obsidian-800 border-t border-paper-400 dark:border-obsidian-500 flex items-center justify-between font-mono text-xs">
+          <span className="text-stone-500 dark:text-obsidian-300 text-[11px]">
+            Engineering Dossier End
+          </span>
           <button
             onClick={onClose}
             aria-label="Close case study"
-            className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition-colors"
+            className="px-3.5 py-1.5 rounded border border-paper-400 dark:border-obsidian-500 bg-paper-100 dark:bg-obsidian-700 text-stone-800 dark:text-obsidian-100 hover:bg-paper-200 dark:hover:bg-obsidian-600 transition-colors"
           >
-            Close Case Study
+            Close Dossier
           </button>
         </div>
       </div>

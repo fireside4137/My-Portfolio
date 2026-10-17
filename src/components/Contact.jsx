@@ -24,7 +24,6 @@ export default function Contact() {
     setSubmitted(false);
 
     try {
-      // Send real email via FormSubmit API to swapnilupadhyay4137@gmail.com
       const response = await fetch(`https://formsubmit.co/ajax/${personalInfo.email}`, {
         method: 'POST',
         headers: {
@@ -35,7 +34,7 @@ export default function Contact() {
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          _subject: `New Portfolio Message from ${formData.name}`,
+          _subject: `Portfolio Message from ${formData.name}`,
           _template: 'table'
         })
       });
@@ -50,8 +49,7 @@ export default function Contact() {
       }
     } catch (err) {
       console.error('Contact form submission error:', err);
-      // Fallback: Open mailto client if API call fails
-      setError('Live API delivery requires email activation link confirmation. Opening your mail client as fallback...');
+      setError('Form submission encountered an issue. Opening mail client...');
       setTimeout(() => {
         const mailtoUri = `mailto:${personalInfo.email}?subject=${encodeURIComponent(`Portfolio Message from ${formData.name}`)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
         window.location.href = mailtoUri;
@@ -69,70 +67,74 @@ export default function Contact() {
           {/* Direct Info Column */}
           <div className="md:col-span-5 space-y-5">
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-mono mb-2">
-                Get In Touch
+              <div className="inline-flex items-center gap-2 text-xs font-mono text-stone-500 dark:text-obsidian-200 mb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-sage-600 dark:bg-sage-400"></span>
+                <span className="uppercase tracking-wider font-semibold text-stone-800 dark:text-obsidian-50">Communication Desk</span>
               </div>
-              <h2 className="text-3xl font-extrabold text-slate-100 tracking-tight">
-                Let's Work Together
+              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-paper-900 dark:text-obsidian-50 tracking-tight">
+                Let&apos;s Collaborate
               </h2>
-              <p className="text-slate-400 text-sm mt-2 leading-relaxed">
-                Open for Data Science, Data Analysis, and Software Engineering roles. Feel free to send a message here or copy my direct email!
+              <p className="text-stone-600 dark:text-obsidian-200 text-sm mt-2 leading-relaxed font-sans">
+                Open for Data Science, Quantitative Modeling, Machine Learning Engineering, and Full-Stack Data positions. Send a message or reach out directly.
               </p>
             </div>
 
             {/* Direct Email Card */}
-            <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
-              <div className="text-[10px] font-mono text-slate-400 uppercase">Official Email</div>
-              <div className="text-sm font-semibold text-slate-100 truncate">{personalInfo.email}</div>
+            <div className="p-4 rounded-xl bg-paper-50 dark:bg-obsidian-800/60 border border-paper-400 dark:border-obsidian-500 space-y-2 font-mono">
+              <div className="text-[10px] text-stone-500 dark:text-obsidian-200 uppercase tracking-wider">Direct Inbox</div>
+              <div className="text-sm font-bold text-paper-900 dark:text-obsidian-50 truncate">{personalInfo.email}</div>
               <button
                 onClick={handleCopyEmail}
-                className="w-full mt-1 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono transition-colors flex items-center justify-center gap-1.5 border border-slate-700"
+                className="w-full mt-1 py-1.5 rounded bg-paper-100 dark:bg-obsidian-700 hover:bg-paper-200 dark:hover:bg-obsidian-600 text-stone-800 dark:text-obsidian-100 text-xs transition-colors flex items-center justify-center gap-1.5 border border-paper-300 dark:border-obsidian-600"
               >
-                {copied ? <><Check size={14} className="text-emerald-400" /> Copied to Clipboard!</> : <><Copy size={14} /> Copy Email Address</>}
+                {copied ? <><Check size={13} className="text-sage-600 dark:text-sage-400" /> Copied to Clipboard!</> : <><Copy size={13} /> Copy Email Address</>}
               </button>
             </div>
 
             {/* Socials */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 font-mono text-xs">
               <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 text-xs font-medium transition-colors flex items-center justify-center gap-2"
+                className="flex-1 py-2 rounded bg-paper-50 dark:bg-obsidian-800 border border-paper-400 dark:border-obsidian-500 text-stone-700 dark:text-obsidian-200 hover:text-stone-950 dark:hover:text-white transition-colors flex items-center justify-center gap-2"
               >
-                <Github size={16} /> GitHub Profile
+                <Github size={14} /> GitHub
               </a>
               <a
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 text-xs font-medium transition-colors flex items-center justify-center gap-2"
+                className="flex-1 py-2 rounded bg-paper-50 dark:bg-obsidian-800 border border-paper-400 dark:border-obsidian-500 text-stone-700 dark:text-obsidian-200 hover:text-stone-950 dark:hover:text-white transition-colors flex items-center justify-center gap-2"
               >
-                <Linkedin size={16} /> LinkedIn
+                <Linkedin size={14} /> LinkedIn
               </a>
             </div>
           </div>
 
           {/* Form Column */}
           <div className="md:col-span-7">
-            <form onSubmit={handleSubmit} className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4 shadow-xl">
-              <h3 className="text-base font-bold text-slate-100">Send Me a Direct Email</h3>
+            <form onSubmit={handleSubmit} className="p-6 rounded-xl bg-paper-50 dark:bg-obsidian-800/60 border border-paper-400 dark:border-obsidian-500 space-y-4 shadow-sm">
+              <div className="border-b border-paper-300 dark:border-obsidian-700 pb-3">
+                <h3 className="text-base font-serif font-bold text-paper-900 dark:text-obsidian-50">Dispatch Direct Ingestion Form</h3>
+                <p className="text-xs font-mono text-stone-500 dark:text-obsidian-200 mt-0.5">Delivered immediately to author inbox</p>
+              </div>
 
               {submitted && (
-                <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono flex items-center gap-2">
-                  <Check size={16} className="shrink-0" /> Message sent successfully! Check your inbox for activation if this is the first submission.
+                <div className="p-3 rounded-lg bg-sage-50 dark:bg-obsidian-900 border border-sage-300 dark:border-obsidian-700 text-sage-800 dark:text-sage-300 text-xs font-mono flex items-center gap-2">
+                  <Check size={15} className="shrink-0 text-sage-600 dark:text-sage-400" /> Message delivered successfully!
                 </div>
               )}
 
               {error && (
-                <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-mono flex items-start gap-2">
-                  <AlertCircle size={16} className="shrink-0 mt-0.5" />
+                <div className="p-3 rounded-lg bg-terracotta-50 dark:bg-obsidian-900 border border-terracotta-300 dark:border-obsidian-700 text-terracotta-700 dark:text-terracotta-400 text-xs font-mono flex items-start gap-2">
+                  <AlertCircle size={15} className="shrink-0 mt-0.5" />
                   <div>{error}</div>
                 </div>
               )}
 
               <div>
-                <label htmlFor="contact-name" className="block text-xs font-mono text-slate-400 mb-1 uppercase">Name</label>
+                <label htmlFor="contact-name" className="block text-[11px] font-mono text-stone-600 dark:text-obsidian-200 mb-1 uppercase tracking-wider">Sender Name</label>
                 <input
                   id="contact-name"
                   type="text"
@@ -140,48 +142,48 @@ export default function Contact() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Your Name"
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:outline-none focus:border-cyan-500 transition-colors"
+                  className="w-full px-3 py-2 rounded bg-paper-100 dark:bg-obsidian-900 border border-paper-300 dark:border-obsidian-700 text-stone-900 dark:text-obsidian-50 text-sm focus:outline-none focus:border-sage-600 dark:focus:border-sage-400 transition-colors font-sans"
                 />
               </div>
 
               <div>
-                <label htmlFor="contact-email" className="block text-xs font-mono text-slate-400 mb-1 uppercase">Email Address</label>
+                <label htmlFor="contact-email" className="block text-[11px] font-mono text-stone-600 dark:text-obsidian-200 mb-1 uppercase tracking-wider">Sender Email</label>
                 <input
                   id="contact-email"
                   type="email"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="your.email@example.com"
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:outline-none focus:border-cyan-500 transition-colors"
+                  placeholder="name@example.com"
+                  className="w-full px-3 py-2 rounded bg-paper-100 dark:bg-obsidian-900 border border-paper-300 dark:border-obsidian-700 text-stone-900 dark:text-obsidian-50 text-sm focus:outline-none focus:border-sage-600 dark:focus:border-sage-400 transition-colors font-sans"
                 />
               </div>
 
               <div>
-                <label htmlFor="contact-message" className="block text-xs font-mono text-slate-400 mb-1 uppercase">Message</label>
+                <label htmlFor="contact-message" className="block text-[11px] font-mono text-stone-600 dark:text-obsidian-200 mb-1 uppercase tracking-wider">Message</label>
                 <textarea
                   id="contact-message"
                   rows={4}
                   required
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Hi Swapnil, I came across your portfolio..."
-                  className="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:outline-none focus:border-cyan-500 transition-colors resize-none"
+                  placeholder="Hi Swapnil, I reviewed your research and would like to discuss..."
+                  className="w-full px-3 py-2 rounded bg-paper-100 dark:bg-obsidian-900 border border-paper-300 dark:border-obsidian-700 text-stone-900 dark:text-obsidian-50 text-sm focus:outline-none focus:border-sage-600 dark:focus:border-sage-400 transition-colors resize-none font-sans"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-md shadow-cyan-500/20 disabled:opacity-50"
+                className="w-full py-2.5 rounded bg-sage-600 hover:bg-sage-700 text-white dark:bg-sage-400 dark:hover:bg-sage-500 dark:text-stone-950 font-mono font-semibold text-xs flex items-center justify-center gap-2 transition-all disabled:opacity-50"
               >
                 {loading ? (
                   <>
-                    <Loader2 size={16} className="animate-spin" /> Sending Email...
+                    <Loader2 size={14} className="animate-spin" /> Transmitting Message...
                   </>
                 ) : (
                   <>
-                    <Send size={15} /> Send Message to Gmail
+                    <Send size={13} /> Dispatch Message
                   </>
                 )}
               </button>
