@@ -64,7 +64,7 @@ export const achievements = [
 export const skills = {
   dataScience: [
     "Python", "SQL", "Pandas", "NumPy", "Statsmodels", "SciPy", 
-    "Scikit-Learn", "OLS Regression", "Hypothesis Testing (t-test, ANOVA)", 
+    "Scikit-Learn", "Reinforcement Learning (Q-Learning, SARSA)", "Gymnasium", "OLS Regression", "Hypothesis Testing (t-test, ANOVA)", 
     "A/B Testing & EDA", "Matplotlib / Seaborn", "PyTorch", "Joblib"
   ],
   aiBiometrics: [
@@ -82,7 +82,73 @@ export const skills = {
 };
 
 export const projects = [
-  {
+{
+    id: "markit-ai-biometrics",
+    title: "MarkIt — AI Powered Biometric Attendance System",
+    subtitle: "Dual-Biometric FaceID & Deep Voice Speaker Recognition System",
+    category: "AI & Computer Vision",
+    featured: true,
+    tags: ["Python", "Streamlit", "dlib", "Resemblyzer", "Supabase", "Scikit-Learn", "OpenCV", "bcrypt"],
+    shortDescription: "Automated classroom management platform powered by 128-d Computer Vision facial embeddings and 256-d Deep Voice Speaker Verification.",
+    metrics: [
+      { label: "Face Embedding", value: "128-d Vector" },
+      { label: "Voice Embedding", value: "256-d d-vector" },
+      { label: "Face Match Cutoff", value: "L2 Norm ≤ 0.6" },
+      { label: "Voice Sim Threshold", value: "Cosine ≥ 0.65" }
+    ],
+    github: null,
+    githubPrivateNote: "Private Repository",
+    demo: "https://markit-landing-page.vercel.app",
+    details: {
+      problem: "Traditional classroom attendance leads to proxy sign-ins, manual roll-call time loss, and administrative friction. MarkIt replaces manual check-ins with multi-modal AI biometric verification.",
+      keyFindings: [
+        "FaceID Pipeline: Extracts 128-d facial vectors using dlib 68-point landmark predictor and deep metric ResNet. Trains a dynamic Linear Support Vector Classifier (SVC) with L2 norm distance verification.",
+        "Deep Voice Pipeline: Uses Resemblyzer d-vector neural network encoders to extract 256-d voiceprints. Applies Librosa silence splitting (top_db=30) to parse bulk classroom recordings into phrase utterances.",
+        "Cosine Similarity Matching: Evaluates audio utterances against student voiceprints using vector dot-product similarity (threshold ≥ 0.65).",
+        "Performance Optimization: Implemented Streamlit's @st.cache_resource memory caching for model loading and SVM fitting, preventing redundant calculations during multi-photo scans."
+      ],
+      architecture: [
+        "Frontend UI built with Streamlit and custom Discord Blurple/Climate CSS styling.",
+        "Supabase PostgreSQL Vector DB storing teacher auth, student profiles, and biometric vector embeddings.",
+        "Passwordless student authentication flow using webcam stream and face vector classification.",
+        "Teacher Management Portal with subject administration, QR share generator (segno), and attendance analytics grids."
+      ]
+    }
+  },
+{
+    id: "telite-lms",
+    title: "Telite LMS — Multi-Tenant Learning Platform",
+    subtitle: "Enterprise Learning System with PostgreSQL RLS & Celery",
+    category: "Full-Stack & Data Architecture",
+    featured: true,
+    tags: ["Python 3.12", "FastAPI", "PostgreSQL RLS", "SQLAlchemy", "Pandas", "Redis", "Celery", "Docker"],
+    shortDescription: "Multi-tenant learning system featuring role-aware access, PostgreSQL Row-Level Security, asynchronous reporting queues, and automated workflows.",
+    metrics: [
+      { label: "Tenant Isolation", value: "PostgreSQL RLS" },
+      { label: "Microservices", value: "6 Docker Containers" },
+      { label: "API Endpoints", value: "15+ REST Modules" },
+      { label: "Batch Runtime", value: "-60% Latency" }
+    ],
+    github: null,
+    githubPrivateNote: "Proprietary Industry Project (Telite Systems Pvt. Ltd.)",
+    demo: null,
+    details: {
+      problem: "Enterprise training environments require strict tenant data separation, role-based governance across admins and learners, and reliable asynchronous reporting.",
+      keyFindings: [
+        "Engineered RESTful APIs with FastAPI and SQLAlchemy for an enterprise Learning Management System (LMS) at Telite Systems Pvt. Ltd.",
+        "Leveraged Pandas, openpyxl, Celery, and Redis to automate background batch data aggregation, feature reporting, and scheduled user analytics, reducing manual data handling by 60%.",
+        "Designed structured relational database schemas utilizing PostgreSQL Row-Level Security (RLS) policies for multi-tenant data isolation.",
+        "Orchestrated 6-container Docker Compose microservices for Nginx, FastAPI, PostgreSQL, Redis, Celery Worker, and Celery Beat."
+      ],
+      architecture: [
+        "Backend: FastAPI app with domain context resolution, PyJWT authentication, and HttpOnly cookie security.",
+        "Database: PostgreSQL with Alembic migrations and SQLite fallback for local development.",
+        "Frontend: React SPA served via Nginx reverse proxy with dynamic Vite API proxying.",
+        "Analytics & Reports: Automated Pandas rollups and Redis-backed rate limiting."
+      ]
+    }
+  },
+{
     id: "powerpredict-energy-output",
     title: "PowerPredict — Combined Cycle Power Plant Energy Output Predictor",
     subtitle: "ANN Regression Model for Hourly Power Output Forecasting",
@@ -124,6 +190,48 @@ export const projects = [
     }
   },
   {
+    id: "cliff-walking-rl-benchmark",
+    title: "Cliff Walking — Q-Learning vs. SARSA Reinforcement Learning Benchmark",
+    subtitle: "Empirical Study on On-Policy vs. Off-Policy Temporal Difference Control",
+    category: "Reinforcement Learning & Decision Science",
+    featured: true,
+    tags: ["Python", "Gymnasium", "NumPy", "Matplotlib", "Reinforcement Learning", "OOP", "Pygame"],
+    shortDescription: "Comparative benchmark analyzing the safety vs. optimality trade-off between Q-Learning (Off-Policy) and SARSA (On-Policy) on Gymnasium's 4x12 Cliff Walking environment.",
+    metrics: [
+      { label: "Q-Learning Return", value: "-13 (13 Steps)" },
+      { label: "SARSA Return", value: "-17 (17 Steps)" },
+      { label: "Benchmark Runs", value: "5 Multi-Seed Runs" },
+      { label: "Training Epochs", value: "500 Episodes" }
+    ],
+    github: "https://github.com/fireside4137/Cliff_Walking_Problem",
+    demo: null,
+    heatmapImage: "/cliffwalking/path_comparison.png",
+    heatmapTitle: "Optimal vs. Safe Trajectory Overlay on CliffWalking-v1",
+    heatmapAlt: "Grid map showing Q-Learning taking the 13-step cliff-edge route while SARSA loops around row 0 in 17 steps.",
+    heatmapDescription: "Empirical trajectory visualization on the 4x12 grid. Q-Learning (red) commits to the minimum-step ledge route (-13 reward), while SARSA (blue) selects the conservative upper detour (-17 reward) to avoid exploration drops.",
+    additionalCharts: [
+      { src: "/cliffwalking/learning_curves.png", alt: "Learning Curves", caption: "Smoothed Episodic Return & Cliff Falls Across 5 Multi-Seed Runs" },
+      { src: "/cliffwalking/q-learning_policy.png", alt: "Q-Learning Policy Grid", caption: "Q-Learning Vector Field (Greedy Optimality along Row 2 Edge)" },
+      { src: "/cliffwalking/sarsa_policy.png", alt: "SARSA Policy Grid", caption: "SARSA Vector Field (Upward Evasion from Cliff States 37-46)" },
+      { src: "/cliffwalking/expected_sarsa_policy.png", alt: "Expected SARSA Policy", caption: "Expected SARSA Policy (Variance Reduction via Expectation)" }
+    ],
+    details: {
+      problem: "Evaluate how on-policy vs. off-policy TD control handles catastrophic risk. In a 4x12 grid where stepping into the cliff incurs a -100 penalty, algorithms must decide whether to hazard the minimum-distance edge or route around the hazard.",
+      keyFindings: [
+        "Q-Learning (Off-Policy) converges to the theoretical optimal path (13 steps, -13 return) by evaluating max Q(S', a), completely ignoring its own ε-greedy exploration risk during training.",
+        "SARSA (On-Policy) factors in exploratory stumbles, learning that states adjacent to the cliff have negative expected value. It deliberately settles on a safer 17-step detour route (-17 return).",
+        "During 5-seed statistical training, Q-Learning suffered frequent cliff drops (-100 rewards), resulting in high online variance, whereas SARSA stabilized online reward significantly earlier.",
+        "Expected SARSA achieved the optimal 13-step path with lower update variance by taking the mathematical expectation over all policy actions instead of sample transitions."
+      ],
+      architecture: [
+        "Modular OOP Architecture: Engineered BaseAgent abstract class with common ε-greedy action selection and Q-table state management.",
+        "Vector Field Visualizer: Custom Matplotlib engine plotting directional policy arrows (↑, →, ↓, ←) and agent trajectories.",
+        "Multi-Seed Benchmarking: Automated evaluation across 5 independent random seeds with rolling moving average smoothing and standard error bands.",
+        "Gymnasium Integration: CLI runner supporting dynamic episode control, custom learning rates (α), discount factors (γ), and optional Pygame rendering."
+      ]
+    }
+  },
+{
     id: "cifar10-cnn-classifier",
     title: "CIFAR-10 Image Classification with PyTorch CNN",
     subtitle: "Custom 3-Stage Convolutional Neural Network with Modern Regularization & Overfitting Resolution",
@@ -160,7 +268,40 @@ export const projects = [
       ]
     }
   },
-  {
+{
+
+    id: "public-health-analytics",
+    title: "India Public Health Analytics Pipeline",
+    subtitle: "Statistical Modeling & OLS Regression for NFHS-4 Health Indicators",
+    category: "Data Science",
+    featured: true,
+    tags: ["Python", "Pandas", "SciPy", "Statsmodels", "OLS Regression", "ANOVA", "T-Tests", "Seaborn"],
+    shortDescription: "Production-grade statistical modeling pipeline analyzing 96 public health indicators across 637 Indian districts from the NFHS-4 dataset.",
+    metrics: [
+      { label: "OLS Model Fit", value: "R² = 0.5831" },
+      { label: "Districts Analyzed", value: "637" },
+      { label: "Statistical Tests", value: "t-test, ANOVA, χ²" },
+      { label: "Literacy Impact", value: "+25.5% Birth Rate" }
+    ],
+    github: "https://github.com/fireside4137/India-public-health-analytics",
+    demo: null,
+    details: {
+      problem: "Public health outcomes across India demonstrate substantial regional and socio-economic heterogeneity. The objective was to clean, validate, and run statistical hypothesis testing to evaluate key structural drivers of maternal and child health.",
+      keyFindings: [
+        "Multiple OLS linear regression (R² = 0.5831, p < 0.0001, VIF < 10) proved 4+ Antenatal Care visits (β = +0.34) and female literacy (β = +0.28) explain 58.3% of institutional birth rate variance.",
+        "Independent T-Test (p < 0.001) confirmed districts in the upper female literacy tier achieve 84.2% institutional births vs 58.7% in low literacy districts.",
+        "One-Way ANOVA (p < 0.001) revealed Central/Eastern state clusters suffer severe child anaemia (>62%) compared to Southern/Western clusters (<48%).",
+        "Data cleaning pipeline with automated domain validation [0, 100%] across 94 numeric indicators."
+      ],
+      architecture: [
+        "Modular class-based Python package (src/preprocessing, src/analysis, src/statistics, src/visualization).",
+        "Centralized configuration management via config.py with zero hardcoded paths.",
+        "Automated unit testing suite for data cleaning pipelines and statistical calculations.",
+        "Exported high-resolution diagnostic charts (Predicted vs Actual fit, residual distribution)."
+      ]
+    }
+  },
+{
     id: "smartcart-customer-segmentation",
     title: "SmartCart — E-Commerce Customer Segmentation System",
     subtitle: "Unsupervised Machine Learning & PCA-Driven Behavioral Clustering System",
@@ -230,7 +371,7 @@ export const projects = [
       ]
     }
   },
-  {
+{
     id: "creditwise-loan-prediction",
     title: "CreditWise — Loan Approval Prediction ML Pipeline",
     subtitle: "End-to-End ML Classification Pipeline with Feature Engineering & Model Comparison",
@@ -282,105 +423,6 @@ export const projects = [
         "Feature Scaling: StandardScaler fit on training set and applied to test set — preventing data leakage.",
         "Feature Engineering: Polynomial (²) and log1p transformations applied to skewed numeric columns post-scaling to improve classifier performance.",
         "Evaluation: All models scored on Precision, Recall, F1 Score, Accuracy, and Confusion Matrix on an 80/20 stratified train-test split (random_state=42)."
-      ]
-    }
-  },
-  {
-
-    id: "public-health-analytics",
-    title: "India Public Health Analytics Pipeline",
-    subtitle: "Statistical Modeling & OLS Regression for NFHS-4 Health Indicators",
-    category: "Data Science",
-    featured: true,
-    tags: ["Python", "Pandas", "SciPy", "Statsmodels", "OLS Regression", "ANOVA", "T-Tests", "Seaborn"],
-    shortDescription: "Production-grade statistical modeling pipeline analyzing 96 public health indicators across 637 Indian districts from the NFHS-4 dataset.",
-    metrics: [
-      { label: "OLS Model Fit", value: "R² = 0.5831" },
-      { label: "Districts Analyzed", value: "637" },
-      { label: "Statistical Tests", value: "t-test, ANOVA, χ²" },
-      { label: "Literacy Impact", value: "+25.5% Birth Rate" }
-    ],
-    github: "https://github.com/fireside4137/India-public-health-analytics",
-    demo: null,
-    details: {
-      problem: "Public health outcomes across India demonstrate substantial regional and socio-economic heterogeneity. The objective was to clean, validate, and run statistical hypothesis testing to evaluate key structural drivers of maternal and child health.",
-      keyFindings: [
-        "Multiple OLS linear regression (R² = 0.5831, p < 0.0001, VIF < 10) proved 4+ Antenatal Care visits (β = +0.34) and female literacy (β = +0.28) explain 58.3% of institutional birth rate variance.",
-        "Independent T-Test (p < 0.001) confirmed districts in the upper female literacy tier achieve 84.2% institutional births vs 58.7% in low literacy districts.",
-        "One-Way ANOVA (p < 0.001) revealed Central/Eastern state clusters suffer severe child anaemia (>62%) compared to Southern/Western clusters (<48%).",
-        "Data cleaning pipeline with automated domain validation [0, 100%] across 94 numeric indicators."
-      ],
-      architecture: [
-        "Modular class-based Python package (src/preprocessing, src/analysis, src/statistics, src/visualization).",
-        "Centralized configuration management via config.py with zero hardcoded paths.",
-        "Automated unit testing suite for data cleaning pipelines and statistical calculations.",
-        "Exported high-resolution diagnostic charts (Predicted vs Actual fit, residual distribution)."
-      ]
-    }
-  },
-  {
-    id: "markit-ai-biometrics",
-    title: "MarkIt — AI Powered Biometric Attendance System",
-    subtitle: "Dual-Biometric FaceID & Deep Voice Speaker Recognition System",
-    category: "AI & Computer Vision",
-    featured: true,
-    tags: ["Python", "Streamlit", "dlib", "Resemblyzer", "Supabase", "Scikit-Learn", "OpenCV", "bcrypt"],
-    shortDescription: "Automated classroom management platform powered by 128-d Computer Vision facial embeddings and 256-d Deep Voice Speaker Verification.",
-    metrics: [
-      { label: "Face Embedding", value: "128-d Vector" },
-      { label: "Voice Embedding", value: "256-d d-vector" },
-      { label: "Face Match Cutoff", value: "L2 Norm ≤ 0.6" },
-      { label: "Voice Sim Threshold", value: "Cosine ≥ 0.65" }
-    ],
-    github: null,
-    githubPrivateNote: "Private Repository",
-    demo: "https://markit-landing-page.vercel.app",
-    details: {
-      problem: "Traditional classroom attendance leads to proxy sign-ins, manual roll-call time loss, and administrative friction. MarkIt replaces manual check-ins with multi-modal AI biometric verification.",
-      keyFindings: [
-        "FaceID Pipeline: Extracts 128-d facial vectors using dlib 68-point landmark predictor and deep metric ResNet. Trains a dynamic Linear Support Vector Classifier (SVC) with L2 norm distance verification.",
-        "Deep Voice Pipeline: Uses Resemblyzer d-vector neural network encoders to extract 256-d voiceprints. Applies Librosa silence splitting (top_db=30) to parse bulk classroom recordings into phrase utterances.",
-        "Cosine Similarity Matching: Evaluates audio utterances against student voiceprints using vector dot-product similarity (threshold ≥ 0.65).",
-        "Performance Optimization: Implemented Streamlit's @st.cache_resource memory caching for model loading and SVM fitting, preventing redundant calculations during multi-photo scans."
-      ],
-      architecture: [
-        "Frontend UI built with Streamlit and custom Discord Blurple/Climate CSS styling.",
-        "Supabase PostgreSQL Vector DB storing teacher auth, student profiles, and biometric vector embeddings.",
-        "Passwordless student authentication flow using webcam stream and face vector classification.",
-        "Teacher Management Portal with subject administration, QR share generator (segno), and attendance analytics grids."
-      ]
-    }
-  },
-  {
-    id: "telite-lms",
-    title: "Telite LMS — Multi-Tenant Learning Platform",
-    subtitle: "Enterprise Learning System with PostgreSQL RLS & Celery",
-    category: "Full-Stack & Data Architecture",
-    featured: true,
-    tags: ["Python 3.12", "FastAPI", "PostgreSQL RLS", "SQLAlchemy", "Pandas", "Redis", "Celery", "Docker"],
-    shortDescription: "Multi-tenant learning system featuring role-aware access, PostgreSQL Row-Level Security, asynchronous reporting queues, and automated workflows.",
-    metrics: [
-      { label: "Tenant Isolation", value: "PostgreSQL RLS" },
-      { label: "Microservices", value: "6 Docker Containers" },
-      { label: "API Endpoints", value: "15+ REST Modules" },
-      { label: "Batch Runtime", value: "-60% Latency" }
-    ],
-    github: null,
-    githubPrivateNote: "Proprietary Industry Project (Telite Systems Pvt. Ltd.)",
-    demo: null,
-    details: {
-      problem: "Enterprise training environments require strict tenant data separation, role-based governance across admins and learners, and reliable asynchronous reporting.",
-      keyFindings: [
-        "Engineered RESTful APIs with FastAPI and SQLAlchemy for an enterprise Learning Management System (LMS) at Telite Systems Pvt. Ltd.",
-        "Leveraged Pandas, openpyxl, Celery, and Redis to automate background batch data aggregation, feature reporting, and scheduled user analytics, reducing manual data handling by 60%.",
-        "Designed structured relational database schemas utilizing PostgreSQL Row-Level Security (RLS) policies for multi-tenant data isolation.",
-        "Orchestrated 6-container Docker Compose microservices for Nginx, FastAPI, PostgreSQL, Redis, Celery Worker, and Celery Beat."
-      ],
-      architecture: [
-        "Backend: FastAPI app with domain context resolution, PyJWT authentication, and HttpOnly cookie security.",
-        "Database: PostgreSQL with Alembic migrations and SQLite fallback for local development.",
-        "Frontend: React SPA served via Nginx reverse proxy with dynamic Vite API proxying.",
-        "Analytics & Reports: Automated Pandas rollups and Redis-backed rate limiting."
       ]
     }
   }
