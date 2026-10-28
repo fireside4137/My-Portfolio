@@ -19,23 +19,50 @@ I am a **Computer Science Graduate (B.Tech, CGPA 8.04, GATE 2026 CS Qualified - 
 My core technical focus lies at the intersection of:
 1. **Data Analytics & Econometric Modeling:** OLS regression, hypothesis testing ($t$-tests, ANOVA, $\chi^2$), data cleaning pipelines, and domain validation.
 2. **AI & Biometrics:** Computer vision facial recognition (dlib 128-d embeddings + Linear SVM) and deep audio speaker verification (Resemblyzer 256-d d-vectors + Librosa DSP).
-3. **Backend & Cloud Architecture:** Multi-tenant database design using **PostgreSQL Row-Level Security (RLS)**, RESTful API design (**FastAPI**), async background task queues (**Redis + Celery**), and containerization (**Docker Compose**).
+3. **Reinforcement Learning & Decision Systems:** Tabular TD control (Q-Learning, SARSA, Expected SARSA), Gymnasium benchmarks, and policy optimization.
+4. **Backend & Cloud Architecture:** Multi-tenant database design using **PostgreSQL Row-Level Security (RLS)**, RESTful API design (**FastAPI**), async background task queues (**Redis + Celery**), and containerization (**Docker Compose**).
 
 ---
 
 ## 🌟 Featured Projects Highlighted in Portfolio
 
-### 🚀 0. PowerPredict — ANN Regression for Power Plant Energy Output
+### 🎯 1. MarkIt — AI Powered Biometric Attendance System
+* **Domain:** AI, Computer Vision & Deep Voice Biometrics
+* **Stack:** Python, Streamlit, dlib, Resemblyzer, Supabase Vector DB, Scikit-Learn, OpenCV, bcrypt
+* **Key Achievements:**
+  * **FaceID Pipeline:** Extracted 128-d facial feature vectors using dlib's 68-point landmark predictor and ResNet deep metric model, training an on-the-fly Linear SVM classifier with $L_2$ norm distance verification ($\text{threshold} \le 0.6$).
+  * **Deep Voice Pipeline:** Utilized Resemblyzer d-vector neural network encoders to extract 256-d speaker voiceprints, matching utterance samples against enrolled templates via cosine similarity ($\text{threshold} \ge 0.65$).
+* 🚀 **Live Demo Web Application:** [markit-landing-page.vercel.app](https://markit-landing-page.vercel.app)
+
+### 🏢 2. Telite LMS — Multi-Tenant Learning Platform
+* **Domain:** Full-Stack & Data Architecture (Software Engineering Internship @ Telite Systems Pvt. Ltd.)
+* **Stack:** Python 3.12, FastAPI, PostgreSQL RLS, SQLAlchemy, Pandas, Redis, Celery, Docker Compose
+* **Key Achievements:**
+  * Engineered backend REST APIs and asynchronous data ingestion pipelines for an enterprise Learning Management System (LMS).
+  * Reduced batch report generation latency by **60%** using Celery task queues and Redis caching.
+  * Implemented PostgreSQL Row-Level Security (RLS) policies for multi-tenant data isolation across 1,000+ records.
+
+### 🚀 3. PowerPredict — ANN Regression for Power Plant Energy Output
 * **Domain:** Machine Learning & Energy Systems & ANN
 * **Stack:** Python, PyTorch, Scikit-Learn, Pandas, NumPy, Matplotlib, Streamlit, Joblib, Pytest
 * **Key Achievements:**
-  * Predicts net hourly electrical output of a Combined Cycle Power Plant from four ambient variables with R² = 0.9276.
-  * PyTorch MLP model (79 parameters) converges in 25 epochs, achieving RMSE = 4.49 MW.
+  * Predicts net hourly electrical output of a Combined Cycle Power Plant from four ambient variables with R² = 0.9276.
+  * PyTorch MLP model (79 parameters) converges in 25 epochs, achieving RMSE = 4.49 MW.
   * Deployed via Streamlit UI with interactive sliders and batch CSV inference.
 * 🔗 **GitHub Repository:** [PowerPredict](https://github.com/fireside4137/PowerPredict)
 * 🚀 **Live Demo:** https://powerpredict-main.streamlit.app/
 
-### 🖼️ 1. CIFAR-10 Image Classification with PyTorch CNN
+### 🧗 4. Cliff Walking — Q-Learning vs. SARSA Reinforcement Learning Benchmark
+* **Domain:** Reinforcement Learning & Decision Science
+* **Stack:** Python, Farama Gymnasium, NumPy, Matplotlib, OOP Architecture, Pygame
+* **Key Achievements:**
+  * Implemented and benchmarked **Q-Learning (Off-Policy TD Control)**, **SARSA (On-Policy TD Control)**, and **Expected SARSA** on Gymnasium's classic $4 \times 12$ `CliffWalking-v1` grid benchmark.
+  * Formulated an empirical study on the **Optimality vs. Safety dilemma**: demonstrated why Q-Learning risks the minimum-step cliff-edge route (**13 steps, $-13$ return**) by assuming greedy transitions, while SARSA accounts for exploratory stumbles and routes around the hazard via an upper detour (**17 steps, $-17$ return**).
+  * Executed multi-seed statistical trials over **500 training episodes** across 5 independent seeds, quantifying that SARSA stabilizes online reward faster with significantly lower catastrophe variance ($-100$ cliff drops) compared to Q-Learning.
+  * Architected a modular, extensible OOP engine (`BaseAgent` abstraction, unified metrics tracker, and vector-field visualizer) plotting directional policy arrows ($\uparrow, \rightarrow, \downarrow, \leftarrow$) and learning dynamics.
+* 🔗 **GitHub Repository:** [Cliff_Walking_Problem](https://github.com/fireside4137/Cliff_Walking_Problem)
+
+### 🖼️ 5. CIFAR-10 Image Classification with PyTorch CNN
 * **Domain:** Deep Learning, Computer Vision & CNN Architecture
 * **Stack:** Python, PyTorch, Torchvision, Streamlit, Gradio, Matplotlib, NumPy
 * **Key Achievements:**
@@ -47,7 +74,16 @@ My core technical focus lies at the intersection of:
 * 🔗 **GitHub Repository:** [cifar10-cnn-from-scratch](https://github.com/fireside4137/cifar10-cnn-from-scratch)
 * 🚀 **Live Demo:** https://cifar10-cnn-from-scratch-prototype.streamlit.app/
 
-### 🛒 2. SmartCart — E-Commerce Customer Segmentation System
+### 📊 6. India Public Health Analytics Pipeline
+* **Domain:** Data Science & Econometrics
+* **Stack:** Python 3.10+, Pandas, SciPy, Statsmodels, Seaborn
+* **Key Achievements:**
+  * Cleaned & validated **96 public health indicators across 637 Indian districts** from the NFHS-4 dataset.
+  * Fitted a multiple OLS linear regression model ($R^2 = 0.5831, p < 0.0001, \text{VIF} < 10$), proving 4+ Antenatal Care visits ($\beta = +0.34$) and female literacy ($\beta = +0.28$) drive 58.3% of institutional birth rate variance.
+  * Executed independent $t$-tests ($t = 12.450, p < 0.0001, \text{Cohen's } d = 0.98$) proving high-literacy districts achieve a **+25.5% higher hospital delivery rate** (84.2% vs 58.7%).
+* 🔗 **GitHub Repository:** [India-public-health-analytics](https://github.com/fireside4137/India-public-health-analytics)
+
+### 🛒 7. SmartCart — E-Commerce Customer Segmentation System
 * **Domain:** Unsupervised Machine Learning & Customer Analytics
 * **Stack:** Python 3.8+, Scikit-Learn (PCA, Agglomerative Clustering, K-Means), Pandas, Seaborn, Matplotlib, JupyterLab
 * **Key Achievements:**
@@ -58,7 +94,7 @@ My core technical focus lies at the intersection of:
   * Derived 4 actionable business personas (*Golden VIP Singles*, *High-Income Families*, *Family Shoppers*, *Digital Browsers*) with tailored marketing action matrices.
 * 🔗 **GitHub Repository:** [SmartCart](https://github.com/fireside4137/SmartCart)
 
-### 💳 3. CreditWise — Loan Approval Prediction ML Pipeline
+### 💳 8. CreditWise — Loan Approval Prediction ML Pipeline
 * **Domain:** Machine Learning & Financial Risk Modeling
 * **Stack:** Python, Scikit-Learn, Pandas, NumPy, Seaborn, Matplotlib, JupyterLab
 * **Key Achievements:**
@@ -67,31 +103,6 @@ My core technical focus lies at the intersection of:
   * Optimized for **Precision** as the primary metric to minimize false approvals and credit default risk.
   * Engineered polynomial ($DTI\_Ratio^2$, $Credit\_Score^2$) and log ($\log1p$) features to reduce skewness and boost classifier generalization.
 * 🔗 **GitHub Repository:** [CreditWise](https://github.com/fireside4137/CreditWise)
-
-### 📊 4. India Public Health Analytics Pipeline
-* **Domain:** Data Science & Econometrics
-* **Stack:** Python 3.10+, Pandas, SciPy, Statsmodels, Seaborn
-* **Key Achievements:**
-  * Cleaned & validated **96 public health indicators across 637 Indian districts** from the NFHS-4 dataset.
-  * Fitted a multiple OLS linear regression model ($R^2 = 0.5831, p < 0.0001, \text{VIF} < 10$), proving 4+ Antenatal Care visits ($\beta = +0.34$) and female literacy ($\beta = +0.28$) drive 58.3% of institutional birth rate variance.
-  * Executed independent $t$-tests ($t = 12.450, p < 0.0001, \text{Cohen's } d = 0.98$) proving high-literacy districts achieve a **+25.5% higher hospital delivery rate** (84.2% vs 58.7%).
-* 🔗 **GitHub Repository:** [India-public-health-analytics](https://github.com/fireside4137/India-public-health-analytics)
-
-### 🎯 5. MarkIt — AI Powered Biometric Attendance System
-* **Domain:** AI, Computer Vision & Deep Voice Biometrics
-* **Stack:** Python, Streamlit, dlib, Resemblyzer, Supabase Vector DB, Scikit-Learn, OpenCV, bcrypt
-* **Key Achievements:**
-  * **FaceID Pipeline:** Extracted 128-d facial feature vectors using dlib's 68-point landmark predictor and ResNet deep metric model, training an on-the-fly Linear SVM classifier with $L_2$ norm distance verification ($\text{threshold} \le 0.6$).
-  * **Deep Voice Pipeline:** Utilized Resemblyzer d-vector neural network encoders to extract 256-d speaker voiceprints, matching utterance samples against enrolled templates via cosine similarity ($\text{threshold} \ge 0.65$).
-* 🚀 **Live Demo Web Application:** [markit-landing-page.vercel.app](https://markit-landing-page.vercel.app)
-
-### 🏢 6. Telite LMS — Multi-Tenant Learning Platform
-* **Domain:** Full-Stack & Data Architecture (Software Engineering Internship @ Telite Systems Pvt. Ltd.)
-* **Stack:** Python 3.12, FastAPI, PostgreSQL RLS, SQLAlchemy, Pandas, Redis, Celery, Docker Compose
-* **Key Achievements:**
-  * Engineered backend REST APIs and asynchronous data ingestion pipelines for an enterprise Learning Management System (LMS).
-  * Reduced batch report generation latency by **60%** using Celery task queues and Redis caching.
-  * Implemented PostgreSQL Row-Level Security (RLS) policies for multi-tenant data isolation across 1,000+ records.
 
 ---
 
@@ -113,6 +124,7 @@ This portfolio website was designed from scratch as a **standalone engineering p
 ```
 portfolio-website/
 ├── public/                     # Static assets (Resume.pdf, profile_picture.jpg, football photos, smartcart charts)
+│   ├── cliffwalking/           # Cliff Walking RL policy vectors, trajectories & learning curves
 │   └── smartcart/              # SmartCart EDA & PCA 3D cluster visualizations
 ├── src/
 │   ├── main.jsx                # React DOM entrypoint
