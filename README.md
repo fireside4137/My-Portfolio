@@ -1,4 +1,4 @@
-# 🚀 Swapnil Upadhyay — Personal Portfolio & Data Science Showcase
+# Swapnil Upadhyay — Personal Portfolio & Data Science Showcase
 
 [![React 18](https://img.shields.io/badge/React-18.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
 [![Vite 5](https://img.shields.io/badge/Vite-5.1-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
